@@ -1,0 +1,106 @@
+companies:
+  - name: GE HealthCare
+    source: generic
+    careers_url: https://careers.gehealthcare.com/global/en/search-results?keywords=sOFTWARE%20ENGINEERING
+    max_links: 150
+    timeout_seconds: 30
+    # Optional: tuning data for future custom policies
+    orchestration:
+      profile: stable
+
+  - name: Uber Engineering
+    source: generic
+    careers_url: https://www.uber.com/us/en/careers/list/?department=Engineering
+    max_links: 150
+    timeout_seconds: 30
+
+  - name: Intuit
+    source: generic
+    careers_url: https://jobs.intuit.com/search-jobs/
+    max_links: 150
+    timeout_seconds: 30
+
+  - name: My Greenhouse
+    disabled: true
+    source: my_greenhouse
+    careers_url: https://my.greenhouse.io/jobs
+    timeout_seconds: 120
+    max_links: 250
+    command_env:
+      MY_GREENHOUSE_MAX_JOBS: "250"
+      MY_GREENHOUSE_WAIT_AFTER_LOAD_MS: "3000"
+      MY_GREENHOUSE_TIMEOUT_MS: "100000"
+      MY_GREENHOUSE_QUERY: "software engineering"
+
+  # API adapter examples:
+  # - name: Example Greenhouse Board
+  #   source: greenhouse
+  #   careers_url: https://boards.greenhouse.io/<board-token>
+  #   # greenhouse_board: <board-token>
+  #
+  # - name: Example Lever Site
+  #   source: lever
+  #   careers_url: https://jobs.lever.co/<site-token>
+  #   # lever_site: <site-token>
+  #
+  # - name: Example iCIMS Board
+  #   source: icims # or icms
+  #   careers_url: https://careers.icims.com/jobs/search?ss=1
+  #   command_env:
+  #     ICIMS_MAX_PAGES: "20"
+  #     ICIMS_MAX_JOBS: "400"
+  #
+  # - name: Example Ashby Board
+  #   source: ashby
+  #   careers_url: https://jobs.ashbyhq.com/<board-token>
+  #   command_env:
+  #     ASHBY_QUERY: "software"
+  #     ASHBY_US_ONLY: "true"
+
+  # Template adapter example:
+  # Use this for UI-only filters after capturing the underlying request.
+  - name: Example Template Source
+    disabled: true
+    source: template
+    careers_url: https://example.com/careers
+    fallback_sources: [playwright]
+    timeout_seconds: 25
+    template:
+      method: GET
+      url: https://example.com/api/jobs
+      params:
+        q: software
+        location: remote
+      jobs_path: data.jobs
+      fields:
+        id: id
+        title: title
+        url: url
+        location: location.name
+        team: department.name
+        posted_at: published_at
+      base_url: https://example.com
+
+  # Command adapter example:
+  # Use this to plug Playwright/Selenium scripts that return JSON jobs.
+  - name: Dropbox (Playwright Fallback)
+    disabled: true
+    source: playwright
+    careers_url: https://www.dropbox.jobs/en/jobs/?search=Software&location=Remote+-+US%3A+All+locations&pagesize=20
+    timeout_seconds: 90
+    command:
+      - uv
+      - run
+      - python
+      - scripts/fetch_jobs_playwright.py
+    command_env:
+      PW_MAX_LINKS: "60"
+      PW_TIMEOUT_MS: "60000"
+      PW_WAIT_AFTER_LOAD_MS: "3000"
+      PW_INCLUDE_PATTERN: "/jobs/"
+      # Optional:
+      # PW_HEADLESS: "true"
+      # PW_LINK_SELECTOR: "a[href]"
+
+    # Optional fallback if browser script reports non-blocked errors:
+    fallback_sources: [generic]

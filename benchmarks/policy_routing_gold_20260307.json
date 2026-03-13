@@ -1,0 +1,2415 @@
+{
+  "generated_at": "2026-03-07T14:36:41.451238+00:00",
+  "task": "source-plan routing",
+  "source": ".state/policy_routing_probe_report_20260307.json",
+  "cases": [
+    {
+      "id": "anthropic_greenhouse:default",
+      "kind": "default",
+      "payload": {
+        "company": {
+          "Name": "Anthropic",
+          "Source": "greenhouse",
+          "CareersURL": "https://www.anthropic.com/careers",
+          "FallbackSources": [
+            "ashby",
+            "generic"
+          ],
+          "TimeoutSeconds": 35,
+          "MaxLinks": 180,
+          "GreenhouseBoard": "anthropic",
+          "LeverSite": "",
+          "Template": null,
+          "Command": null,
+          "CommandEnv": {},
+          "MyGreenhouseCmd": null,
+          "Orchestration": null,
+          "Disabled": false
+        },
+        "prior_status": null,
+        "allowed_plan": [
+          "greenhouse",
+          "ashby",
+          "generic"
+        ]
+      },
+      "gold_plan": [
+        "greenhouse",
+        "generic",
+        "ashby"
+      ],
+      "company_name": "Anthropic",
+      "primary_source": "greenhouse",
+      "allowed_plan": [
+        "greenhouse",
+        "ashby",
+        "generic"
+      ],
+      "notes": "Greenhouse ATS board versus another ATS guess and generic HTML fallback.",
+      "probes": [
+        {
+          "source": "greenhouse",
+          "status": "ok",
+          "message": "110 relevant, 335 quality, 450 raw",
+          "raw_jobs": 450,
+          "quality_jobs": 335,
+          "relevant_jobs": 110,
+          "should_fallback_quality": false,
+          "sample_titles": [
+            "Analytics Data Engineer",
+            "Application Security Engineer",
+            "Applied AI Engineer, Beneficial Deployments"
+          ]
+        },
+        {
+          "source": "ashby",
+          "status": "error",
+          "message": "could not derive ashby board from \"https://www.anthropic.com/careers\"",
+          "raw_jobs": 0,
+          "quality_jobs": 0,
+          "relevant_jobs": 0,
+          "should_fallback_quality": false
+        },
+        {
+          "source": "generic",
+          "status": "ok",
+          "message": "0 relevant, 0 quality, 2 raw, fallback-quality",
+          "raw_jobs": 2,
+          "quality_jobs": 0,
+          "relevant_jobs": 0,
+          "should_fallback_quality": true
+        }
+      ]
+    },
+    {
+      "id": "anthropic_greenhouse:blocked-primary",
+      "kind": "blocked-primary",
+      "payload": {
+        "company": {
+          "Name": "Anthropic",
+          "Source": "greenhouse",
+          "CareersURL": "https://www.anthropic.com/careers",
+          "FallbackSources": [
+            "ashby",
+            "generic"
+          ],
+          "TimeoutSeconds": 35,
+          "MaxLinks": 180,
+          "GreenhouseBoard": "anthropic",
+          "LeverSite": "",
+          "Template": null,
+          "Command": null,
+          "CommandEnv": {},
+          "MyGreenhouseCmd": null,
+          "Orchestration": null,
+          "Disabled": false
+        },
+        "prior_status": {
+          "status": "blocked",
+          "selected_source": "greenhouse",
+          "attempted_sources": [
+            "greenhouse"
+          ],
+          "message": "Primary source was previously blocked in a real crawl benchmark case.",
+          "updated_at": ""
+        },
+        "allowed_plan": [
+          "greenhouse",
+          "ashby",
+          "generic"
+        ]
+      },
+      "gold_plan": [
+        "generic",
+        "ashby",
+        "greenhouse"
+      ],
+      "company_name": "Anthropic",
+      "primary_source": "greenhouse",
+      "allowed_plan": [
+        "greenhouse",
+        "ashby",
+        "generic"
+      ],
+      "notes": "Greenhouse ATS board versus another ATS guess and generic HTML fallback.",
+      "probes": [
+        {
+          "source": "greenhouse",
+          "status": "ok",
+          "message": "110 relevant, 335 quality, 450 raw",
+          "raw_jobs": 450,
+          "quality_jobs": 335,
+          "relevant_jobs": 110,
+          "should_fallback_quality": false,
+          "sample_titles": [
+            "Analytics Data Engineer",
+            "Application Security Engineer",
+            "Applied AI Engineer, Beneficial Deployments"
+          ]
+        },
+        {
+          "source": "ashby",
+          "status": "error",
+          "message": "could not derive ashby board from \"https://www.anthropic.com/careers\"",
+          "raw_jobs": 0,
+          "quality_jobs": 0,
+          "relevant_jobs": 0,
+          "should_fallback_quality": false
+        },
+        {
+          "source": "generic",
+          "status": "ok",
+          "message": "0 relevant, 0 quality, 2 raw, fallback-quality",
+          "raw_jobs": 2,
+          "quality_jobs": 0,
+          "relevant_jobs": 0,
+          "should_fallback_quality": true
+        }
+      ]
+    },
+    {
+      "id": "openai_ashby:default",
+      "kind": "default",
+      "payload": {
+        "company": {
+          "Name": "OpenAI",
+          "Source": "ashby",
+          "CareersURL": "https://api.ashbyhq.com/posting-api/job-board/openai",
+          "FallbackSources": [
+            "greenhouse",
+            "generic"
+          ],
+          "TimeoutSeconds": 90,
+          "MaxLinks": 180,
+          "GreenhouseBoard": "",
+          "LeverSite": "",
+          "Template": null,
+          "Command": null,
+          "CommandEnv": {
+            "ASHBY_MAX_JOBS": "900",
+            "ASHBY_QUERY": "software",
+            "ASHBY_TIMEOUT_SECONDS": "35",
+            "ASHBY_US_ONLY": "true"
+          },
+          "MyGreenhouseCmd": null,
+          "Orchestration": null,
+          "Disabled": false
+        },
+        "prior_status": null,
+        "allowed_plan": [
+          "ashby",
+          "greenhouse",
+          "generic"
+        ]
+      },
+      "gold_plan": [
+        "ashby",
+        "generic",
+        "greenhouse"
+      ],
+      "company_name": "OpenAI",
+      "primary_source": "ashby",
+      "allowed_plan": [
+        "ashby",
+        "greenhouse",
+        "generic"
+      ],
+      "notes": "Ashby ATS board versus another ATS guess and generic HTML fallback.",
+      "probes": [
+        {
+          "source": "ashby",
+          "status": "ok",
+          "message": "5 relevant, 180 quality, 180 raw",
+          "raw_jobs": 180,
+          "quality_jobs": 180,
+          "relevant_jobs": 5,
+          "should_fallback_quality": false,
+          "sample_titles": [
+            "Software Engineer, Quality & Developer Tools, Consumer Devices",
+            "Software Engineer Systems Research Internship, Applied Emerging Talent (Summer 2026)",
+            "Hardware Tools Engineer"
+          ]
+        },
+        {
+          "source": "greenhouse",
+          "status": "error",
+          "message": "could not derive greenhouse board from \"https://api.ashbyhq.com/posting-api/job-board/openai\"",
+          "raw_jobs": 0,
+          "quality_jobs": 0,
+          "relevant_jobs": 0,
+          "should_fallback_quality": false
+        },
+        {
+          "source": "generic",
+          "status": "ok",
+          "message": "0 relevant, 0 quality, 0 raw",
+          "raw_jobs": 0,
+          "quality_jobs": 0,
+          "relevant_jobs": 0,
+          "should_fallback_quality": false
+        }
+      ]
+    },
+    {
+      "id": "openai_ashby:blocked-primary",
+      "kind": "blocked-primary",
+      "payload": {
+        "company": {
+          "Name": "OpenAI",
+          "Source": "ashby",
+          "CareersURL": "https://api.ashbyhq.com/posting-api/job-board/openai",
+          "FallbackSources": [
+            "greenhouse",
+            "generic"
+          ],
+          "TimeoutSeconds": 90,
+          "MaxLinks": 180,
+          "GreenhouseBoard": "",
+          "LeverSite": "",
+          "Template": null,
+          "Command": null,
+          "CommandEnv": {
+            "ASHBY_MAX_JOBS": "900",
+            "ASHBY_QUERY": "software",
+            "ASHBY_TIMEOUT_SECONDS": "35",
+            "ASHBY_US_ONLY": "true"
+          },
+          "MyGreenhouseCmd": null,
+          "Orchestration": null,
+          "Disabled": false
+        },
+        "prior_status": {
+          "status": "blocked",
+          "selected_source": "ashby",
+          "attempted_sources": [
+            "ashby"
+          ],
+          "message": "Primary source was previously blocked in a real crawl benchmark case.",
+          "updated_at": ""
+        },
+        "allowed_plan": [
+          "ashby",
+          "greenhouse",
+          "generic"
+        ]
+      },
+      "gold_plan": [
+        "generic",
+        "greenhouse",
+        "ashby"
+      ],
+      "company_name": "OpenAI",
+      "primary_source": "ashby",
+      "allowed_plan": [
+        "ashby",
+        "greenhouse",
+        "generic"
+      ],
+      "notes": "Ashby ATS board versus another ATS guess and generic HTML fallback.",
+      "probes": [
+        {
+          "source": "ashby",
+          "status": "ok",
+          "message": "5 relevant, 180 quality, 180 raw",
+          "raw_jobs": 180,
+          "quality_jobs": 180,
+          "relevant_jobs": 5,
+          "should_fallback_quality": false,
+          "sample_titles": [
+            "Software Engineer, Quality & Developer Tools, Consumer Devices",
+            "Software Engineer Systems Research Internship, Applied Emerging Talent (Summer 2026)",
+            "Hardware Tools Engineer"
+          ]
+        },
+        {
+          "source": "greenhouse",
+          "status": "error",
+          "message": "could not derive greenhouse board from \"https://api.ashbyhq.com/posting-api/job-board/openai\"",
+          "raw_jobs": 0,
+          "quality_jobs": 0,
+          "relevant_jobs": 0,
+          "should_fallback_quality": false
+        },
+        {
+          "source": "generic",
+          "status": "ok",
+          "message": "0 relevant, 0 quality, 0 raw",
+          "raw_jobs": 0,
+          "quality_jobs": 0,
+          "relevant_jobs": 0,
+          "should_fallback_quality": false
+        }
+      ]
+    },
+    {
+      "id": "palantir_lever:default",
+      "kind": "default",
+      "payload": {
+        "company": {
+          "Name": "Palantir",
+          "Source": "lever",
+          "CareersURL": "https://jobs.lever.co/palantir",
+          "FallbackSources": [
+            "greenhouse",
+            "generic"
+          ],
+          "TimeoutSeconds": 35,
+          "MaxLinks": 180,
+          "GreenhouseBoard": "",
+          "LeverSite": "palantir",
+          "Template": null,
+          "Command": null,
+          "CommandEnv": {},
+          "MyGreenhouseCmd": null,
+          "Orchestration": null,
+          "Disabled": false
+        },
+        "prior_status": null,
+        "allowed_plan": [
+          "lever",
+          "greenhouse",
+          "generic"
+        ]
+      },
+      "gold_plan": [
+        "lever",
+        "generic",
+        "greenhouse"
+      ],
+      "company_name": "Palantir",
+      "primary_source": "lever",
+      "allowed_plan": [
+        "lever",
+        "greenhouse",
+        "generic"
+      ],
+      "notes": "Lever board versus another ATS guess and generic HTML fallback.",
+      "probes": [
+        {
+          "source": "lever",
+          "status": "ok",
+          "message": "2 relevant, 236 quality, 239 raw",
+          "raw_jobs": 239,
+          "quality_jobs": 236,
+          "relevant_jobs": 2,
+          "should_fallback_quality": false,
+          "sample_titles": [
+            "Backend Software Engineer",
+            "Forward Deployed Software Engineer - Tactical Edge"
+          ]
+        },
+        {
+          "source": "greenhouse",
+          "status": "error",
+          "message": "could not derive greenhouse board from \"https://jobs.lever.co/palantir\"",
+          "raw_jobs": 0,
+          "quality_jobs": 0,
+          "relevant_jobs": 0,
+          "should_fallback_quality": false
+        },
+        {
+          "source": "generic",
+          "status": "ok",
+          "message": "0 relevant, 11 quality, 180 raw, fallback-quality",
+          "raw_jobs": 180,
+          "quality_jobs": 11,
+          "relevant_jobs": 0,
+          "should_fallback_quality": true
+        }
+      ]
+    },
+    {
+      "id": "palantir_lever:blocked-primary",
+      "kind": "blocked-primary",
+      "payload": {
+        "company": {
+          "Name": "Palantir",
+          "Source": "lever",
+          "CareersURL": "https://jobs.lever.co/palantir",
+          "FallbackSources": [
+            "greenhouse",
+            "generic"
+          ],
+          "TimeoutSeconds": 35,
+          "MaxLinks": 180,
+          "GreenhouseBoard": "",
+          "LeverSite": "palantir",
+          "Template": null,
+          "Command": null,
+          "CommandEnv": {},
+          "MyGreenhouseCmd": null,
+          "Orchestration": null,
+          "Disabled": false
+        },
+        "prior_status": {
+          "status": "blocked",
+          "selected_source": "lever",
+          "attempted_sources": [
+            "lever"
+          ],
+          "message": "Primary source was previously blocked in a real crawl benchmark case.",
+          "updated_at": ""
+        },
+        "allowed_plan": [
+          "lever",
+          "greenhouse",
+          "generic"
+        ]
+      },
+      "gold_plan": [
+        "generic",
+        "greenhouse",
+        "lever"
+      ],
+      "company_name": "Palantir",
+      "primary_source": "lever",
+      "allowed_plan": [
+        "lever",
+        "greenhouse",
+        "generic"
+      ],
+      "notes": "Lever board versus another ATS guess and generic HTML fallback.",
+      "probes": [
+        {
+          "source": "lever",
+          "status": "ok",
+          "message": "2 relevant, 236 quality, 239 raw",
+          "raw_jobs": 239,
+          "quality_jobs": 236,
+          "relevant_jobs": 2,
+          "should_fallback_quality": false,
+          "sample_titles": [
+            "Backend Software Engineer",
+            "Forward Deployed Software Engineer - Tactical Edge"
+          ]
+        },
+        {
+          "source": "greenhouse",
+          "status": "error",
+          "message": "could not derive greenhouse board from \"https://jobs.lever.co/palantir\"",
+          "raw_jobs": 0,
+          "quality_jobs": 0,
+          "relevant_jobs": 0,
+          "should_fallback_quality": false
+        },
+        {
+          "source": "generic",
+          "status": "ok",
+          "message": "0 relevant, 11 quality, 180 raw, fallback-quality",
+          "raw_jobs": 180,
+          "quality_jobs": 11,
+          "relevant_jobs": 0,
+          "should_fallback_quality": true
+        }
+      ]
+    },
+    {
+      "id": "adobe_phenom:default",
+      "kind": "default",
+      "payload": {
+        "company": {
+          "Name": "Adobe",
+          "Source": "phenom",
+          "CareersURL": "https://careers.adobe.com/us/en/search-results?keywords=Software",
+          "FallbackSources": [
+            "generic",
+            "greenhouse"
+          ],
+          "TimeoutSeconds": 120,
+          "MaxLinks": 180,
+          "GreenhouseBoard": "",
+          "LeverSite": "",
+          "Template": null,
+          "Command": null,
+          "CommandEnv": {
+            "PHENOM_LOCATION_INCLUDE_PATTERN": "(?i)\\b(united\\s+states|usa)\\b",
+            "PHENOM_MAX_PAGES": "20",
+            "PHENOM_PAGE_SIZE": "10"
+          },
+          "MyGreenhouseCmd": null,
+          "Orchestration": null,
+          "Disabled": false
+        },
+        "prior_status": null,
+        "allowed_plan": [
+          "phenom",
+          "generic",
+          "greenhouse"
+        ]
+      },
+      "gold_plan": [
+        "phenom",
+        "generic",
+        "greenhouse"
+      ],
+      "company_name": "Adobe",
+      "primary_source": "phenom",
+      "allowed_plan": [
+        "phenom",
+        "generic",
+        "greenhouse"
+      ],
+      "notes": "Phenom-hosted board versus generic fallback.",
+      "probes": [
+        {
+          "source": "phenom",
+          "status": "ok",
+          "message": "7 relevant, 105 quality, 105 raw",
+          "raw_jobs": 105,
+          "quality_jobs": 105,
+          "relevant_jobs": 7,
+          "should_fallback_quality": false,
+          "sample_titles": [
+            "Software Development Engineer",
+            "Software Development Engineer",
+            "Software Development Engineer (C++)"
+          ]
+        },
+        {
+          "source": "generic",
+          "status": "ok",
+          "message": "0 relevant, 0 quality, 1 raw, fallback-quality",
+          "raw_jobs": 1,
+          "quality_jobs": 0,
+          "relevant_jobs": 0,
+          "should_fallback_quality": true
+        },
+        {
+          "source": "greenhouse",
+          "status": "error",
+          "message": "could not derive greenhouse board from \"https://careers.adobe.com/us/en/search-results?keywords=Software\"",
+          "raw_jobs": 0,
+          "quality_jobs": 0,
+          "relevant_jobs": 0,
+          "should_fallback_quality": false
+        }
+      ]
+    },
+    {
+      "id": "adobe_phenom:blocked-primary",
+      "kind": "blocked-primary",
+      "payload": {
+        "company": {
+          "Name": "Adobe",
+          "Source": "phenom",
+          "CareersURL": "https://careers.adobe.com/us/en/search-results?keywords=Software",
+          "FallbackSources": [
+            "generic",
+            "greenhouse"
+          ],
+          "TimeoutSeconds": 120,
+          "MaxLinks": 180,
+          "GreenhouseBoard": "",
+          "LeverSite": "",
+          "Template": null,
+          "Command": null,
+          "CommandEnv": {
+            "PHENOM_LOCATION_INCLUDE_PATTERN": "(?i)\\b(united\\s+states|usa)\\b",
+            "PHENOM_MAX_PAGES": "20",
+            "PHENOM_PAGE_SIZE": "10"
+          },
+          "MyGreenhouseCmd": null,
+          "Orchestration": null,
+          "Disabled": false
+        },
+        "prior_status": {
+          "status": "blocked",
+          "selected_source": "phenom",
+          "attempted_sources": [
+            "phenom"
+          ],
+          "message": "Primary source was previously blocked in a real crawl benchmark case.",
+          "updated_at": ""
+        },
+        "allowed_plan": [
+          "phenom",
+          "generic",
+          "greenhouse"
+        ]
+      },
+      "gold_plan": [
+        "generic",
+        "greenhouse",
+        "phenom"
+      ],
+      "company_name": "Adobe",
+      "primary_source": "phenom",
+      "allowed_plan": [
+        "phenom",
+        "generic",
+        "greenhouse"
+      ],
+      "notes": "Phenom-hosted board versus generic fallback.",
+      "probes": [
+        {
+          "source": "phenom",
+          "status": "ok",
+          "message": "7 relevant, 105 quality, 105 raw",
+          "raw_jobs": 105,
+          "quality_jobs": 105,
+          "relevant_jobs": 7,
+          "should_fallback_quality": false,
+          "sample_titles": [
+            "Software Development Engineer",
+            "Software Development Engineer",
+            "Software Development Engineer (C++)"
+          ]
+        },
+        {
+          "source": "generic",
+          "status": "ok",
+          "message": "0 relevant, 0 quality, 1 raw, fallback-quality",
+          "raw_jobs": 1,
+          "quality_jobs": 0,
+          "relevant_jobs": 0,
+          "should_fallback_quality": true
+        },
+        {
+          "source": "greenhouse",
+          "status": "error",
+          "message": "could not derive greenhouse board from \"https://careers.adobe.com/us/en/search-results?keywords=Software\"",
+          "raw_jobs": 0,
+          "quality_jobs": 0,
+          "relevant_jobs": 0,
+          "should_fallback_quality": false
+        }
+      ]
+    },
+    {
+      "id": "apple_native:default",
+      "kind": "default",
+      "payload": {
+        "company": {
+          "Name": "Apple",
+          "Source": "apple",
+          "CareersURL": "https://jobs.apple.com/en-us/search?search=software&location=united-states-USA",
+          "FallbackSources": [
+            "generic",
+            "greenhouse"
+          ],
+          "TimeoutSeconds": 120,
+          "MaxLinks": 180,
+          "GreenhouseBoard": "",
+          "LeverSite": "",
+          "Template": null,
+          "Command": null,
+          "CommandEnv": {
+            "APPLE_MAX_PAGES": "20"
+          },
+          "MyGreenhouseCmd": null,
+          "Orchestration": null,
+          "Disabled": false
+        },
+        "prior_status": null,
+        "allowed_plan": [
+          "apple",
+          "generic",
+          "greenhouse"
+        ]
+      },
+      "gold_plan": [
+        "apple",
+        "generic",
+        "greenhouse"
+      ],
+      "company_name": "Apple",
+      "primary_source": "apple",
+      "allowed_plan": [
+        "apple",
+        "generic",
+        "greenhouse"
+      ],
+      "notes": "Native Apple adapter versus generic fallback.",
+      "probes": [
+        {
+          "source": "apple",
+          "status": "ok",
+          "message": "83 relevant, 180 quality, 180 raw",
+          "raw_jobs": 180,
+          "quality_jobs": 180,
+          "relevant_jobs": 83,
+          "should_fallback_quality": false,
+          "sample_titles": [
+            "Software Development Engineer in Test - Core I/O Quality Engineering",
+            "Software Engineer (Virtualization)",
+            "Hardware Systems Engineer - SoC (iPhone Systems Technologies)"
+          ]
+        },
+        {
+          "source": "generic",
+          "status": "ok",
+          "message": "8 relevant, 21 quality, 23 raw",
+          "raw_jobs": 23,
+          "quality_jobs": 21,
+          "relevant_jobs": 8,
+          "should_fallback_quality": false,
+          "sample_titles": [
+            "Software Development Engineer in Test - Core I/O Quality Engineering",
+            "Hardware Systems Engineer - SoC (iPhone Systems Technologies)",
+            "Software Development Engineer (SAP Data Archiving Analyst), IS&T Enterprise Systems"
+          ]
+        },
+        {
+          "source": "greenhouse",
+          "status": "error",
+          "message": "could not derive greenhouse board from \"https://jobs.apple.com/en-us/search?search=software&location=united-states-USA\"",
+          "raw_jobs": 0,
+          "quality_jobs": 0,
+          "relevant_jobs": 0,
+          "should_fallback_quality": false
+        }
+      ]
+    },
+    {
+      "id": "apple_native:blocked-primary",
+      "kind": "blocked-primary",
+      "payload": {
+        "company": {
+          "Name": "Apple",
+          "Source": "apple",
+          "CareersURL": "https://jobs.apple.com/en-us/search?search=software&location=united-states-USA",
+          "FallbackSources": [
+            "generic",
+            "greenhouse"
+          ],
+          "TimeoutSeconds": 120,
+          "MaxLinks": 180,
+          "GreenhouseBoard": "",
+          "LeverSite": "",
+          "Template": null,
+          "Command": null,
+          "CommandEnv": {
+            "APPLE_MAX_PAGES": "20"
+          },
+          "MyGreenhouseCmd": null,
+          "Orchestration": null,
+          "Disabled": false
+        },
+        "prior_status": {
+          "status": "blocked",
+          "selected_source": "apple",
+          "attempted_sources": [
+            "apple"
+          ],
+          "message": "Primary source was previously blocked in a real crawl benchmark case.",
+          "updated_at": ""
+        },
+        "allowed_plan": [
+          "apple",
+          "generic",
+          "greenhouse"
+        ]
+      },
+      "gold_plan": [
+        "generic",
+        "greenhouse",
+        "apple"
+      ],
+      "company_name": "Apple",
+      "primary_source": "apple",
+      "allowed_plan": [
+        "apple",
+        "generic",
+        "greenhouse"
+      ],
+      "notes": "Native Apple adapter versus generic fallback.",
+      "probes": [
+        {
+          "source": "apple",
+          "status": "ok",
+          "message": "83 relevant, 180 quality, 180 raw",
+          "raw_jobs": 180,
+          "quality_jobs": 180,
+          "relevant_jobs": 83,
+          "should_fallback_quality": false,
+          "sample_titles": [
+            "Software Development Engineer in Test - Core I/O Quality Engineering",
+            "Software Engineer (Virtualization)",
+            "Hardware Systems Engineer - SoC (iPhone Systems Technologies)"
+          ]
+        },
+        {
+          "source": "generic",
+          "status": "ok",
+          "message": "8 relevant, 21 quality, 23 raw",
+          "raw_jobs": 23,
+          "quality_jobs": 21,
+          "relevant_jobs": 8,
+          "should_fallback_quality": false,
+          "sample_titles": [
+            "Software Development Engineer in Test - Core I/O Quality Engineering",
+            "Hardware Systems Engineer - SoC (iPhone Systems Technologies)",
+            "Software Development Engineer (SAP Data Archiving Analyst), IS&T Enterprise Systems"
+          ]
+        },
+        {
+          "source": "greenhouse",
+          "status": "error",
+          "message": "could not derive greenhouse board from \"https://jobs.apple.com/en-us/search?search=software&location=united-states-USA\"",
+          "raw_jobs": 0,
+          "quality_jobs": 0,
+          "relevant_jobs": 0,
+          "should_fallback_quality": false
+        }
+      ]
+    },
+    {
+      "id": "amazon_native:default",
+      "kind": "default",
+      "payload": {
+        "company": {
+          "Name": "Amazon",
+          "Source": "amazon",
+          "CareersURL": "https://www.amazon.jobs/en/search?base_query=software&loc_query=United%20States",
+          "FallbackSources": [
+            "generic",
+            "greenhouse"
+          ],
+          "TimeoutSeconds": 45,
+          "MaxLinks": 180,
+          "GreenhouseBoard": "",
+          "LeverSite": "",
+          "Template": null,
+          "Command": null,
+          "CommandEnv": {
+            "AMAZON_PAGE_SIZE": "100"
+          },
+          "MyGreenhouseCmd": null,
+          "Orchestration": null,
+          "Disabled": false
+        },
+        "prior_status": null,
+        "allowed_plan": [
+          "amazon",
+          "generic",
+          "greenhouse"
+        ]
+      },
+      "gold_plan": [
+        "amazon",
+        "generic",
+        "greenhouse"
+      ],
+      "company_name": "Amazon",
+      "primary_source": "amazon",
+      "allowed_plan": [
+        "amazon",
+        "generic",
+        "greenhouse"
+      ],
+      "notes": "Native Amazon adapter versus generic fallback.",
+      "probes": [
+        {
+          "source": "amazon",
+          "status": "ok",
+          "message": "42 relevant, 87 quality, 180 raw",
+          "raw_jobs": 180,
+          "quality_jobs": 87,
+          "relevant_jobs": 42,
+          "should_fallback_quality": false,
+          "sample_titles": [
+            "SW Automation and Framework Engineer, Amazon Leo",
+            "Software Engineer I, Twitch Chat",
+            "Software Development Engineer, Fire TV"
+          ]
+        },
+        {
+          "source": "generic",
+          "status": "ok",
+          "message": "0 relevant, 0 quality, 12 raw, fallback-quality",
+          "raw_jobs": 12,
+          "quality_jobs": 0,
+          "relevant_jobs": 0,
+          "should_fallback_quality": true
+        },
+        {
+          "source": "greenhouse",
+          "status": "error",
+          "message": "could not derive greenhouse board from \"https://www.amazon.jobs/en/search?base_query=software&loc_query=United%20States\"",
+          "raw_jobs": 0,
+          "quality_jobs": 0,
+          "relevant_jobs": 0,
+          "should_fallback_quality": false
+        }
+      ]
+    },
+    {
+      "id": "amazon_native:blocked-primary",
+      "kind": "blocked-primary",
+      "payload": {
+        "company": {
+          "Name": "Amazon",
+          "Source": "amazon",
+          "CareersURL": "https://www.amazon.jobs/en/search?base_query=software&loc_query=United%20States",
+          "FallbackSources": [
+            "generic",
+            "greenhouse"
+          ],
+          "TimeoutSeconds": 45,
+          "MaxLinks": 180,
+          "GreenhouseBoard": "",
+          "LeverSite": "",
+          "Template": null,
+          "Command": null,
+          "CommandEnv": {
+            "AMAZON_PAGE_SIZE": "100"
+          },
+          "MyGreenhouseCmd": null,
+          "Orchestration": null,
+          "Disabled": false
+        },
+        "prior_status": {
+          "status": "blocked",
+          "selected_source": "amazon",
+          "attempted_sources": [
+            "amazon"
+          ],
+          "message": "Primary source was previously blocked in a real crawl benchmark case.",
+          "updated_at": ""
+        },
+        "allowed_plan": [
+          "amazon",
+          "generic",
+          "greenhouse"
+        ]
+      },
+      "gold_plan": [
+        "generic",
+        "greenhouse",
+        "amazon"
+      ],
+      "company_name": "Amazon",
+      "primary_source": "amazon",
+      "allowed_plan": [
+        "amazon",
+        "generic",
+        "greenhouse"
+      ],
+      "notes": "Native Amazon adapter versus generic fallback.",
+      "probes": [
+        {
+          "source": "amazon",
+          "status": "ok",
+          "message": "42 relevant, 87 quality, 180 raw",
+          "raw_jobs": 180,
+          "quality_jobs": 87,
+          "relevant_jobs": 42,
+          "should_fallback_quality": false,
+          "sample_titles": [
+            "SW Automation and Framework Engineer, Amazon Leo",
+            "Software Engineer I, Twitch Chat",
+            "Software Development Engineer, Fire TV"
+          ]
+        },
+        {
+          "source": "generic",
+          "status": "ok",
+          "message": "0 relevant, 0 quality, 12 raw, fallback-quality",
+          "raw_jobs": 12,
+          "quality_jobs": 0,
+          "relevant_jobs": 0,
+          "should_fallback_quality": true
+        },
+        {
+          "source": "greenhouse",
+          "status": "error",
+          "message": "could not derive greenhouse board from \"https://www.amazon.jobs/en/search?base_query=software&loc_query=United%20States\"",
+          "raw_jobs": 0,
+          "quality_jobs": 0,
+          "relevant_jobs": 0,
+          "should_fallback_quality": false
+        }
+      ]
+    },
+    {
+      "id": "capitalone_native:default",
+      "kind": "default",
+      "payload": {
+        "company": {
+          "Name": "Capital One",
+          "Source": "capitalone",
+          "CareersURL": "https://www.capitalonecareers.com/search-jobs/United%20States/234/2/6252001/39x76/-98x5/50/2",
+          "FallbackSources": [
+            "generic",
+            "greenhouse"
+          ],
+          "TimeoutSeconds": 45,
+          "MaxLinks": 180,
+          "GreenhouseBoard": "",
+          "LeverSite": "",
+          "Template": null,
+          "Command": null,
+          "CommandEnv": {
+            "CAPITALONE_MAX_PAGES": "12"
+          },
+          "MyGreenhouseCmd": null,
+          "Orchestration": null,
+          "Disabled": false
+        },
+        "prior_status": null,
+        "allowed_plan": [
+          "capitalone",
+          "generic",
+          "greenhouse"
+        ]
+      },
+      "gold_plan": [
+        "generic",
+        "capitalone",
+        "greenhouse"
+      ],
+      "company_name": "Capital One",
+      "primary_source": "capitalone",
+      "allowed_plan": [
+        "capitalone",
+        "generic",
+        "greenhouse"
+      ],
+      "notes": "Native Capital One adapter versus generic fallback.",
+      "probes": [
+        {
+          "source": "capitalone",
+          "status": "ok",
+          "message": "0 relevant, 15 quality, 15 raw",
+          "raw_jobs": 15,
+          "quality_jobs": 15,
+          "relevant_jobs": 0,
+          "should_fallback_quality": false
+        },
+        {
+          "source": "generic",
+          "status": "ok",
+          "message": "2 relevant, 16 quality, 22 raw",
+          "raw_jobs": 22,
+          "quality_jobs": 16,
+          "relevant_jobs": 2,
+          "should_fallback_quality": false,
+          "sample_titles": [
+            "92474028032 03/06/2026 Applied Researcher II (AI Foundations) San Jose, CA",
+            "Get Started using our Job Finder Quiz"
+          ]
+        },
+        {
+          "source": "greenhouse",
+          "status": "error",
+          "message": "could not derive greenhouse board from \"https://www.capitalonecareers.com/search-jobs/United%20States/234/2/6252001/39x76/-98x5/50/2\"",
+          "raw_jobs": 0,
+          "quality_jobs": 0,
+          "relevant_jobs": 0,
+          "should_fallback_quality": false
+        }
+      ]
+    },
+    {
+      "id": "capitalone_native:blocked-primary",
+      "kind": "blocked-primary",
+      "payload": {
+        "company": {
+          "Name": "Capital One",
+          "Source": "capitalone",
+          "CareersURL": "https://www.capitalonecareers.com/search-jobs/United%20States/234/2/6252001/39x76/-98x5/50/2",
+          "FallbackSources": [
+            "generic",
+            "greenhouse"
+          ],
+          "TimeoutSeconds": 45,
+          "MaxLinks": 180,
+          "GreenhouseBoard": "",
+          "LeverSite": "",
+          "Template": null,
+          "Command": null,
+          "CommandEnv": {
+            "CAPITALONE_MAX_PAGES": "12"
+          },
+          "MyGreenhouseCmd": null,
+          "Orchestration": null,
+          "Disabled": false
+        },
+        "prior_status": {
+          "status": "blocked",
+          "selected_source": "capitalone",
+          "attempted_sources": [
+            "capitalone"
+          ],
+          "message": "Primary source was previously blocked in a real crawl benchmark case.",
+          "updated_at": ""
+        },
+        "allowed_plan": [
+          "capitalone",
+          "generic",
+          "greenhouse"
+        ]
+      },
+      "gold_plan": [
+        "generic",
+        "greenhouse",
+        "capitalone"
+      ],
+      "company_name": "Capital One",
+      "primary_source": "capitalone",
+      "allowed_plan": [
+        "capitalone",
+        "generic",
+        "greenhouse"
+      ],
+      "notes": "Native Capital One adapter versus generic fallback.",
+      "probes": [
+        {
+          "source": "capitalone",
+          "status": "ok",
+          "message": "0 relevant, 15 quality, 15 raw",
+          "raw_jobs": 15,
+          "quality_jobs": 15,
+          "relevant_jobs": 0,
+          "should_fallback_quality": false
+        },
+        {
+          "source": "generic",
+          "status": "ok",
+          "message": "2 relevant, 16 quality, 22 raw",
+          "raw_jobs": 22,
+          "quality_jobs": 16,
+          "relevant_jobs": 2,
+          "should_fallback_quality": false,
+          "sample_titles": [
+            "92474028032 03/06/2026 Applied Researcher II (AI Foundations) San Jose, CA",
+            "Get Started using our Job Finder Quiz"
+          ]
+        },
+        {
+          "source": "greenhouse",
+          "status": "error",
+          "message": "could not derive greenhouse board from \"https://www.capitalonecareers.com/search-jobs/United%20States/234/2/6252001/39x76/-98x5/50/2\"",
+          "raw_jobs": 0,
+          "quality_jobs": 0,
+          "relevant_jobs": 0,
+          "should_fallback_quality": false
+        }
+      ]
+    },
+    {
+      "id": "datadog_native:default",
+      "kind": "default",
+      "payload": {
+        "company": {
+          "Name": "Datadog",
+          "Source": "datadog",
+          "CareersURL": "https://careers.datadoghq.com/all-jobs/",
+          "FallbackSources": [
+            "generic",
+            "greenhouse"
+          ],
+          "TimeoutSeconds": 35,
+          "MaxLinks": 180,
+          "GreenhouseBoard": "",
+          "LeverSite": "",
+          "Template": null,
+          "Command": null,
+          "CommandEnv": {
+            "DATADOG_QUERY": "software"
+          },
+          "MyGreenhouseCmd": null,
+          "Orchestration": null,
+          "Disabled": false
+        },
+        "prior_status": null,
+        "allowed_plan": [
+          "datadog",
+          "generic",
+          "greenhouse"
+        ]
+      },
+      "gold_plan": [
+        "datadog",
+        "generic",
+        "greenhouse"
+      ],
+      "company_name": "Datadog",
+      "primary_source": "datadog",
+      "allowed_plan": [
+        "datadog",
+        "generic",
+        "greenhouse"
+      ],
+      "notes": "Native Datadog Typesense adapter versus generic fallback.",
+      "probes": [
+        {
+          "source": "datadog",
+          "status": "ok",
+          "message": "6 relevant, 59 quality, 134 raw",
+          "raw_jobs": 134,
+          "quality_jobs": 59,
+          "relevant_jobs": 6,
+          "should_fallback_quality": false,
+          "sample_titles": [
+            "Technical Curriculum Developer - Security",
+            "Container Runtime Engineer",
+            "Federal Support Engineer 2 - Denver"
+          ]
+        },
+        {
+          "source": "generic",
+          "status": "ok",
+          "message": "0 relevant, 0 quality, 11 raw, fallback-quality",
+          "raw_jobs": 11,
+          "quality_jobs": 0,
+          "relevant_jobs": 0,
+          "should_fallback_quality": true
+        },
+        {
+          "source": "greenhouse",
+          "status": "error",
+          "message": "could not derive greenhouse board from \"https://careers.datadoghq.com/all-jobs/\"",
+          "raw_jobs": 0,
+          "quality_jobs": 0,
+          "relevant_jobs": 0,
+          "should_fallback_quality": false
+        }
+      ]
+    },
+    {
+      "id": "datadog_native:blocked-primary",
+      "kind": "blocked-primary",
+      "payload": {
+        "company": {
+          "Name": "Datadog",
+          "Source": "datadog",
+          "CareersURL": "https://careers.datadoghq.com/all-jobs/",
+          "FallbackSources": [
+            "generic",
+            "greenhouse"
+          ],
+          "TimeoutSeconds": 35,
+          "MaxLinks": 180,
+          "GreenhouseBoard": "",
+          "LeverSite": "",
+          "Template": null,
+          "Command": null,
+          "CommandEnv": {
+            "DATADOG_QUERY": "software"
+          },
+          "MyGreenhouseCmd": null,
+          "Orchestration": null,
+          "Disabled": false
+        },
+        "prior_status": {
+          "status": "blocked",
+          "selected_source": "datadog",
+          "attempted_sources": [
+            "datadog"
+          ],
+          "message": "Primary source was previously blocked in a real crawl benchmark case.",
+          "updated_at": ""
+        },
+        "allowed_plan": [
+          "datadog",
+          "generic",
+          "greenhouse"
+        ]
+      },
+      "gold_plan": [
+        "generic",
+        "greenhouse",
+        "datadog"
+      ],
+      "company_name": "Datadog",
+      "primary_source": "datadog",
+      "allowed_plan": [
+        "datadog",
+        "generic",
+        "greenhouse"
+      ],
+      "notes": "Native Datadog Typesense adapter versus generic fallback.",
+      "probes": [
+        {
+          "source": "datadog",
+          "status": "ok",
+          "message": "6 relevant, 59 quality, 134 raw",
+          "raw_jobs": 134,
+          "quality_jobs": 59,
+          "relevant_jobs": 6,
+          "should_fallback_quality": false,
+          "sample_titles": [
+            "Technical Curriculum Developer - Security",
+            "Container Runtime Engineer",
+            "Federal Support Engineer 2 - Denver"
+          ]
+        },
+        {
+          "source": "generic",
+          "status": "ok",
+          "message": "0 relevant, 0 quality, 11 raw, fallback-quality",
+          "raw_jobs": 11,
+          "quality_jobs": 0,
+          "relevant_jobs": 0,
+          "should_fallback_quality": true
+        },
+        {
+          "source": "greenhouse",
+          "status": "error",
+          "message": "could not derive greenhouse board from \"https://careers.datadoghq.com/all-jobs/\"",
+          "raw_jobs": 0,
+          "quality_jobs": 0,
+          "relevant_jobs": 0,
+          "should_fallback_quality": false
+        }
+      ]
+    },
+    {
+      "id": "google_native:default",
+      "kind": "default",
+      "payload": {
+        "company": {
+          "Name": "Google",
+          "Source": "google",
+          "CareersURL": "https://www.google.com/about/careers/applications/jobs/results/?q=software&sort_by=date",
+          "FallbackSources": [
+            "generic",
+            "greenhouse"
+          ],
+          "TimeoutSeconds": 90,
+          "MaxLinks": 180,
+          "GreenhouseBoard": "",
+          "LeverSite": "",
+          "Template": null,
+          "Command": null,
+          "CommandEnv": {
+            "GOOGLE_MAX_PAGES": "24"
+          },
+          "MyGreenhouseCmd": null,
+          "Orchestration": null,
+          "Disabled": false
+        },
+        "prior_status": null,
+        "allowed_plan": [
+          "google",
+          "generic",
+          "greenhouse"
+        ]
+      },
+      "gold_plan": [
+        "generic",
+        "google",
+        "greenhouse"
+      ],
+      "company_name": "Google",
+      "primary_source": "google",
+      "allowed_plan": [
+        "google",
+        "generic",
+        "greenhouse"
+      ],
+      "notes": "Native Google adapter versus generic fallback.",
+      "probes": [
+        {
+          "source": "google",
+          "status": "ok",
+          "message": "11 relevant, 136 quality, 180 raw",
+          "raw_jobs": 180,
+          "quality_jobs": 136,
+          "relevant_jobs": 11,
+          "should_fallback_quality": false,
+          "sample_titles": [
+            "Software Engineer III, AI/ML GenAI, Google Cloud Compute",
+            "Software Engineer III, Engineering Productivity, YouTube",
+            "Software Engineer III, Front End, Google Cloud AI"
+          ]
+        },
+        {
+          "source": "generic",
+          "status": "ok",
+          "message": "17 relevant, 103 quality, 158 raw",
+          "raw_jobs": 158,
+          "quality_jobs": 103,
+          "relevant_jobs": 17,
+          "should_fallback_quality": false,
+          "sample_titles": [
+            "101660659837477574 software engineer station control google beam",
+            "105880035709067974 silicon backend cad engineer iii silicon",
+            "107060361441485510 software engineer iii infrastructure google cloud netinfra"
+          ]
+        },
+        {
+          "source": "greenhouse",
+          "status": "error",
+          "message": "could not derive greenhouse board from \"https://www.google.com/about/careers/applications/jobs/results/?q=software&sort_by=date\"",
+          "raw_jobs": 0,
+          "quality_jobs": 0,
+          "relevant_jobs": 0,
+          "should_fallback_quality": false
+        }
+      ]
+    },
+    {
+      "id": "google_native:blocked-primary",
+      "kind": "blocked-primary",
+      "payload": {
+        "company": {
+          "Name": "Google",
+          "Source": "google",
+          "CareersURL": "https://www.google.com/about/careers/applications/jobs/results/?q=software&sort_by=date",
+          "FallbackSources": [
+            "generic",
+            "greenhouse"
+          ],
+          "TimeoutSeconds": 90,
+          "MaxLinks": 180,
+          "GreenhouseBoard": "",
+          "LeverSite": "",
+          "Template": null,
+          "Command": null,
+          "CommandEnv": {
+            "GOOGLE_MAX_PAGES": "24"
+          },
+          "MyGreenhouseCmd": null,
+          "Orchestration": null,
+          "Disabled": false
+        },
+        "prior_status": {
+          "status": "blocked",
+          "selected_source": "google",
+          "attempted_sources": [
+            "google"
+          ],
+          "message": "Primary source was previously blocked in a real crawl benchmark case.",
+          "updated_at": ""
+        },
+        "allowed_plan": [
+          "google",
+          "generic",
+          "greenhouse"
+        ]
+      },
+      "gold_plan": [
+        "generic",
+        "greenhouse",
+        "google"
+      ],
+      "company_name": "Google",
+      "primary_source": "google",
+      "allowed_plan": [
+        "google",
+        "generic",
+        "greenhouse"
+      ],
+      "notes": "Native Google adapter versus generic fallback.",
+      "probes": [
+        {
+          "source": "google",
+          "status": "ok",
+          "message": "11 relevant, 136 quality, 180 raw",
+          "raw_jobs": 180,
+          "quality_jobs": 136,
+          "relevant_jobs": 11,
+          "should_fallback_quality": false,
+          "sample_titles": [
+            "Software Engineer III, AI/ML GenAI, Google Cloud Compute",
+            "Software Engineer III, Engineering Productivity, YouTube",
+            "Software Engineer III, Front End, Google Cloud AI"
+          ]
+        },
+        {
+          "source": "generic",
+          "status": "ok",
+          "message": "17 relevant, 103 quality, 158 raw",
+          "raw_jobs": 158,
+          "quality_jobs": 103,
+          "relevant_jobs": 17,
+          "should_fallback_quality": false,
+          "sample_titles": [
+            "101660659837477574 software engineer station control google beam",
+            "105880035709067974 silicon backend cad engineer iii silicon",
+            "107060361441485510 software engineer iii infrastructure google cloud netinfra"
+          ]
+        },
+        {
+          "source": "greenhouse",
+          "status": "error",
+          "message": "could not derive greenhouse board from \"https://www.google.com/about/careers/applications/jobs/results/?q=software&sort_by=date\"",
+          "raw_jobs": 0,
+          "quality_jobs": 0,
+          "relevant_jobs": 0,
+          "should_fallback_quality": false
+        }
+      ]
+    },
+    {
+      "id": "microsoft_native:default",
+      "kind": "default",
+      "payload": {
+        "company": {
+          "Name": "Microsoft",
+          "Source": "microsoft",
+          "CareersURL": "https://apply.careers.microsoft.com/careers?query=software&sort_by=timestamp",
+          "FallbackSources": [
+            "generic",
+            "greenhouse"
+          ],
+          "TimeoutSeconds": 90,
+          "MaxLinks": 180,
+          "GreenhouseBoard": "",
+          "LeverSite": "",
+          "Template": null,
+          "Command": null,
+          "CommandEnv": {
+            "MICROSOFT_DETAIL_FETCH_LIMIT": "120",
+            "MICROSOFT_DETAIL_WORKERS": "6",
+            "MICROSOFT_MAX_PAGES": "24"
+          },
+          "MyGreenhouseCmd": null,
+          "Orchestration": null,
+          "Disabled": false
+        },
+        "prior_status": null,
+        "allowed_plan": [
+          "microsoft",
+          "generic",
+          "greenhouse"
+        ]
+      },
+      "gold_plan": [
+        "microsoft",
+        "generic",
+        "greenhouse"
+      ],
+      "company_name": "Microsoft",
+      "primary_source": "microsoft",
+      "allowed_plan": [
+        "microsoft",
+        "generic",
+        "greenhouse"
+      ],
+      "notes": "Native Microsoft adapter versus generic fallback.",
+      "probes": [
+        {
+          "source": "microsoft",
+          "status": "ok",
+          "message": "8 relevant, 139 quality, 180 raw",
+          "raw_jobs": 180,
+          "quality_jobs": 139,
+          "relevant_jobs": 8,
+          "should_fallback_quality": false,
+          "sample_titles": [
+            "Software Engineer",
+            "Software Engineer II",
+            "Software Engineer II"
+          ]
+        },
+        {
+          "source": "generic",
+          "status": "ok",
+          "message": "0 relevant, 0 quality, 0 raw",
+          "raw_jobs": 0,
+          "quality_jobs": 0,
+          "relevant_jobs": 0,
+          "should_fallback_quality": false
+        },
+        {
+          "source": "greenhouse",
+          "status": "error",
+          "message": "could not derive greenhouse board from \"https://apply.careers.microsoft.com/careers?query=software&sort_by=timestamp\"",
+          "raw_jobs": 0,
+          "quality_jobs": 0,
+          "relevant_jobs": 0,
+          "should_fallback_quality": false
+        }
+      ]
+    },
+    {
+      "id": "microsoft_native:blocked-primary",
+      "kind": "blocked-primary",
+      "payload": {
+        "company": {
+          "Name": "Microsoft",
+          "Source": "microsoft",
+          "CareersURL": "https://apply.careers.microsoft.com/careers?query=software&sort_by=timestamp",
+          "FallbackSources": [
+            "generic",
+            "greenhouse"
+          ],
+          "TimeoutSeconds": 90,
+          "MaxLinks": 180,
+          "GreenhouseBoard": "",
+          "LeverSite": "",
+          "Template": null,
+          "Command": null,
+          "CommandEnv": {
+            "MICROSOFT_DETAIL_FETCH_LIMIT": "120",
+            "MICROSOFT_DETAIL_WORKERS": "6",
+            "MICROSOFT_MAX_PAGES": "24"
+          },
+          "MyGreenhouseCmd": null,
+          "Orchestration": null,
+          "Disabled": false
+        },
+        "prior_status": {
+          "status": "blocked",
+          "selected_source": "microsoft",
+          "attempted_sources": [
+            "microsoft"
+          ],
+          "message": "Primary source was previously blocked in a real crawl benchmark case.",
+          "updated_at": ""
+        },
+        "allowed_plan": [
+          "microsoft",
+          "generic",
+          "greenhouse"
+        ]
+      },
+      "gold_plan": [
+        "generic",
+        "greenhouse",
+        "microsoft"
+      ],
+      "company_name": "Microsoft",
+      "primary_source": "microsoft",
+      "allowed_plan": [
+        "microsoft",
+        "generic",
+        "greenhouse"
+      ],
+      "notes": "Native Microsoft adapter versus generic fallback.",
+      "probes": [
+        {
+          "source": "microsoft",
+          "status": "ok",
+          "message": "8 relevant, 139 quality, 180 raw",
+          "raw_jobs": 180,
+          "quality_jobs": 139,
+          "relevant_jobs": 8,
+          "should_fallback_quality": false,
+          "sample_titles": [
+            "Software Engineer",
+            "Software Engineer II",
+            "Software Engineer II"
+          ]
+        },
+        {
+          "source": "generic",
+          "status": "ok",
+          "message": "0 relevant, 0 quality, 0 raw",
+          "raw_jobs": 0,
+          "quality_jobs": 0,
+          "relevant_jobs": 0,
+          "should_fallback_quality": false
+        },
+        {
+          "source": "greenhouse",
+          "status": "error",
+          "message": "could not derive greenhouse board from \"https://apply.careers.microsoft.com/careers?query=software&sort_by=timestamp\"",
+          "raw_jobs": 0,
+          "quality_jobs": 0,
+          "relevant_jobs": 0,
+          "should_fallback_quality": false
+        }
+      ]
+    },
+    {
+      "id": "atlassian_native:default",
+      "kind": "default",
+      "payload": {
+        "company": {
+          "Name": "Atlassian",
+          "Source": "atlassian",
+          "CareersURL": "https://www.atlassian.com/company/careers/all-jobs",
+          "FallbackSources": [
+            "generic",
+            "greenhouse"
+          ],
+          "TimeoutSeconds": 35,
+          "MaxLinks": 180,
+          "GreenhouseBoard": "",
+          "LeverSite": "",
+          "Template": null,
+          "Command": null,
+          "CommandEnv": {},
+          "MyGreenhouseCmd": null,
+          "Orchestration": null,
+          "Disabled": false
+        },
+        "prior_status": null,
+        "allowed_plan": [
+          "atlassian",
+          "generic",
+          "greenhouse"
+        ]
+      },
+      "gold_plan": [
+        "atlassian",
+        "generic",
+        "greenhouse"
+      ],
+      "company_name": "Atlassian",
+      "primary_source": "atlassian",
+      "allowed_plan": [
+        "atlassian",
+        "generic",
+        "greenhouse"
+      ],
+      "notes": "Native Atlassian adapter versus generic fallback.",
+      "probes": [
+        {
+          "source": "atlassian",
+          "status": "ok",
+          "message": "0 relevant, 33 quality, 94 raw",
+          "raw_jobs": 94,
+          "quality_jobs": 33,
+          "relevant_jobs": 0,
+          "should_fallback_quality": false
+        },
+        {
+          "source": "generic",
+          "status": "ok",
+          "message": "0 relevant, 0 quality, 1 raw, fallback-quality",
+          "raw_jobs": 1,
+          "quality_jobs": 0,
+          "relevant_jobs": 0,
+          "should_fallback_quality": true
+        },
+        {
+          "source": "greenhouse",
+          "status": "error",
+          "message": "could not derive greenhouse board from \"https://www.atlassian.com/company/careers/all-jobs\"",
+          "raw_jobs": 0,
+          "quality_jobs": 0,
+          "relevant_jobs": 0,
+          "should_fallback_quality": false
+        }
+      ]
+    },
+    {
+      "id": "atlassian_native:blocked-primary",
+      "kind": "blocked-primary",
+      "payload": {
+        "company": {
+          "Name": "Atlassian",
+          "Source": "atlassian",
+          "CareersURL": "https://www.atlassian.com/company/careers/all-jobs",
+          "FallbackSources": [
+            "generic",
+            "greenhouse"
+          ],
+          "TimeoutSeconds": 35,
+          "MaxLinks": 180,
+          "GreenhouseBoard": "",
+          "LeverSite": "",
+          "Template": null,
+          "Command": null,
+          "CommandEnv": {},
+          "MyGreenhouseCmd": null,
+          "Orchestration": null,
+          "Disabled": false
+        },
+        "prior_status": {
+          "status": "blocked",
+          "selected_source": "atlassian",
+          "attempted_sources": [
+            "atlassian"
+          ],
+          "message": "Primary source was previously blocked in a real crawl benchmark case.",
+          "updated_at": ""
+        },
+        "allowed_plan": [
+          "atlassian",
+          "generic",
+          "greenhouse"
+        ]
+      },
+      "gold_plan": [
+        "generic",
+        "greenhouse",
+        "atlassian"
+      ],
+      "company_name": "Atlassian",
+      "primary_source": "atlassian",
+      "allowed_plan": [
+        "atlassian",
+        "generic",
+        "greenhouse"
+      ],
+      "notes": "Native Atlassian adapter versus generic fallback.",
+      "probes": [
+        {
+          "source": "atlassian",
+          "status": "ok",
+          "message": "0 relevant, 33 quality, 94 raw",
+          "raw_jobs": 94,
+          "quality_jobs": 33,
+          "relevant_jobs": 0,
+          "should_fallback_quality": false
+        },
+        {
+          "source": "generic",
+          "status": "ok",
+          "message": "0 relevant, 0 quality, 1 raw, fallback-quality",
+          "raw_jobs": 1,
+          "quality_jobs": 0,
+          "relevant_jobs": 0,
+          "should_fallback_quality": true
+        },
+        {
+          "source": "greenhouse",
+          "status": "error",
+          "message": "could not derive greenhouse board from \"https://www.atlassian.com/company/careers/all-jobs\"",
+          "raw_jobs": 0,
+          "quality_jobs": 0,
+          "relevant_jobs": 0,
+          "should_fallback_quality": false
+        }
+      ]
+    },
+    {
+      "id": "oracle_template:default",
+      "kind": "default",
+      "payload": {
+        "company": {
+          "Name": "Oracle",
+          "Source": "template",
+          "CareersURL": "https://careers.oracle.com/en/sites/jobsearch/jobs?location=United%20States&locationId=300000000149325&keyword=software",
+          "FallbackSources": [
+            "generic",
+            "greenhouse"
+          ],
+          "TimeoutSeconds": 35,
+          "MaxLinks": 180,
+          "GreenhouseBoard": "",
+          "LeverSite": "",
+          "Template": {
+            "base_url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/requisitions/preview/",
+            "fields": {
+              "description": "ShortDescriptionStr",
+              "id": "Id",
+              "location": "PrimaryLocation",
+              "posted_at": "PostedDate",
+              "team": "JobFunction",
+              "title": "Title",
+              "url": "Id"
+            },
+            "jobs_path": "items.0.requisitionList",
+            "method": "GET",
+            "params": {
+              "expand": "requisitionList.workLocation,requisitionList.otherWorkLocations,requisitionList.secondaryLocations,flexFieldsFacet.values,requisitionList.requisitionFlexFields",
+              "finder": "findReqs;siteNumber=CX_45001,facetsList=LOCATIONS;WORK_LOCATIONS;WORKPLACE_TYPES;TITLES;CATEGORIES;ORGANIZATIONS;POSTING_DATES;FLEX_FIELDS,limit=120,locationId=300000000149325,keyword=\"software\",sortBy=RELEVANCY",
+              "onlyData": "true"
+            },
+            "url": "https://eeho.fa.us2.oraclecloud.com/hcmRestApi/resources/latest/recruitingCEJobRequisitions"
+          },
+          "Command": null,
+          "CommandEnv": {},
+          "MyGreenhouseCmd": null,
+          "Orchestration": null,
+          "Disabled": false
+        },
+        "prior_status": null,
+        "allowed_plan": [
+          "template",
+          "generic",
+          "greenhouse"
+        ]
+      },
+      "gold_plan": [
+        "template",
+        "generic",
+        "greenhouse"
+      ],
+      "company_name": "Oracle",
+      "primary_source": "template",
+      "allowed_plan": [
+        "template",
+        "generic",
+        "greenhouse"
+      ],
+      "notes": "Template API adapter versus generic fallback.",
+      "probes": [
+        {
+          "source": "template",
+          "status": "ok",
+          "message": "4 relevant, 120 quality, 120 raw",
+          "raw_jobs": 120,
+          "quality_jobs": 120,
+          "relevant_jobs": 4,
+          "should_fallback_quality": false,
+          "sample_titles": [
+            "Software Developer 3",
+            "Software Developer 3",
+            "Software Developer 3"
+          ]
+        },
+        {
+          "source": "generic",
+          "status": "ok",
+          "message": "0 relevant, 0 quality, 0 raw",
+          "raw_jobs": 0,
+          "quality_jobs": 0,
+          "relevant_jobs": 0,
+          "should_fallback_quality": false
+        },
+        {
+          "source": "greenhouse",
+          "status": "error",
+          "message": "could not derive greenhouse board from \"https://careers.oracle.com/en/sites/jobsearch/jobs?location=United%20States&locationId=300000000149325&keyword=software\"",
+          "raw_jobs": 0,
+          "quality_jobs": 0,
+          "relevant_jobs": 0,
+          "should_fallback_quality": false
+        }
+      ]
+    },
+    {
+      "id": "oracle_template:blocked-primary",
+      "kind": "blocked-primary",
+      "payload": {
+        "company": {
+          "Name": "Oracle",
+          "Source": "template",
+          "CareersURL": "https://careers.oracle.com/en/sites/jobsearch/jobs?location=United%20States&locationId=300000000149325&keyword=software",
+          "FallbackSources": [
+            "generic",
+            "greenhouse"
+          ],
+          "TimeoutSeconds": 35,
+          "MaxLinks": 180,
+          "GreenhouseBoard": "",
+          "LeverSite": "",
+          "Template": {
+            "base_url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/requisitions/preview/",
+            "fields": {
+              "description": "ShortDescriptionStr",
+              "id": "Id",
+              "location": "PrimaryLocation",
+              "posted_at": "PostedDate",
+              "team": "JobFunction",
+              "title": "Title",
+              "url": "Id"
+            },
+            "jobs_path": "items.0.requisitionList",
+            "method": "GET",
+            "params": {
+              "expand": "requisitionList.workLocation,requisitionList.otherWorkLocations,requisitionList.secondaryLocations,flexFieldsFacet.values,requisitionList.requisitionFlexFields",
+              "finder": "findReqs;siteNumber=CX_45001,facetsList=LOCATIONS;WORK_LOCATIONS;WORKPLACE_TYPES;TITLES;CATEGORIES;ORGANIZATIONS;POSTING_DATES;FLEX_FIELDS,limit=120,locationId=300000000149325,keyword=\"software\",sortBy=RELEVANCY",
+              "onlyData": "true"
+            },
+            "url": "https://eeho.fa.us2.oraclecloud.com/hcmRestApi/resources/latest/recruitingCEJobRequisitions"
+          },
+          "Command": null,
+          "CommandEnv": {},
+          "MyGreenhouseCmd": null,
+          "Orchestration": null,
+          "Disabled": false
+        },
+        "prior_status": {
+          "status": "blocked",
+          "selected_source": "template",
+          "attempted_sources": [
+            "template"
+          ],
+          "message": "Primary source was previously blocked in a real crawl benchmark case.",
+          "updated_at": ""
+        },
+        "allowed_plan": [
+          "template",
+          "generic",
+          "greenhouse"
+        ]
+      },
+      "gold_plan": [
+        "generic",
+        "greenhouse",
+        "template"
+      ],
+      "company_name": "Oracle",
+      "primary_source": "template",
+      "allowed_plan": [
+        "template",
+        "generic",
+        "greenhouse"
+      ],
+      "notes": "Template API adapter versus generic fallback.",
+      "probes": [
+        {
+          "source": "template",
+          "status": "ok",
+          "message": "4 relevant, 120 quality, 120 raw",
+          "raw_jobs": 120,
+          "quality_jobs": 120,
+          "relevant_jobs": 4,
+          "should_fallback_quality": false,
+          "sample_titles": [
+            "Software Developer 3",
+            "Software Developer 3",
+            "Software Developer 3"
+          ]
+        },
+        {
+          "source": "generic",
+          "status": "ok",
+          "message": "0 relevant, 0 quality, 0 raw",
+          "raw_jobs": 0,
+          "quality_jobs": 0,
+          "relevant_jobs": 0,
+          "should_fallback_quality": false
+        },
+        {
+          "source": "greenhouse",
+          "status": "error",
+          "message": "could not derive greenhouse board from \"https://careers.oracle.com/en/sites/jobsearch/jobs?location=United%20States&locationId=300000000149325&keyword=software\"",
+          "raw_jobs": 0,
+          "quality_jobs": 0,
+          "relevant_jobs": 0,
+          "should_fallback_quality": false
+        }
+      ]
+    },
+    {
+      "id": "veeva_native:default",
+      "kind": "default",
+      "payload": {
+        "company": {
+          "Name": "Veeva Systems",
+          "Source": "veeva",
+          "CareersURL": "https://careers.veeva.com/job-search-results/?search=software&remote=false&ts=Engineering&regions=United+States&office_locations=",
+          "FallbackSources": [
+            "lever",
+            "generic"
+          ],
+          "TimeoutSeconds": 35,
+          "MaxLinks": 180,
+          "GreenhouseBoard": "",
+          "LeverSite": "",
+          "Template": null,
+          "Command": null,
+          "CommandEnv": {},
+          "MyGreenhouseCmd": null,
+          "Orchestration": null,
+          "Disabled": false
+        },
+        "prior_status": null,
+        "allowed_plan": [
+          "veeva",
+          "lever",
+          "generic"
+        ]
+      },
+      "gold_plan": [
+        "veeva",
+        "generic",
+        "lever"
+      ],
+      "company_name": "Veeva Systems",
+      "primary_source": "veeva",
+      "allowed_plan": [
+        "veeva",
+        "lever",
+        "generic"
+      ],
+      "notes": "Native Veeva feed versus Lever-style fallback and generic fallback.",
+      "probes": [
+        {
+          "source": "veeva",
+          "status": "ok",
+          "message": "5 relevant, 64 quality, 64 raw",
+          "raw_jobs": 64,
+          "quality_jobs": 64,
+          "relevant_jobs": 5,
+          "should_fallback_quality": false,
+          "sample_titles": [
+            "Associate Software Engineer in Test",
+            "Associate Software Engineer in Test",
+            "Software Engineer - Full Stack"
+          ]
+        },
+        {
+          "source": "lever",
+          "status": "error",
+          "message": "could not derive lever site from \"https://careers.veeva.com/job-search-results/?search=software&remote=false&ts=Engineering&regions=United+States&office_locations=\"",
+          "raw_jobs": 0,
+          "quality_jobs": 0,
+          "relevant_jobs": 0,
+          "should_fallback_quality": false
+        },
+        {
+          "source": "generic",
+          "status": "ok",
+          "message": "0 relevant, 3 quality, 3 raw",
+          "raw_jobs": 3,
+          "quality_jobs": 3,
+          "relevant_jobs": 0,
+          "should_fallback_quality": false
+        }
+      ]
+    },
+    {
+      "id": "veeva_native:blocked-primary",
+      "kind": "blocked-primary",
+      "payload": {
+        "company": {
+          "Name": "Veeva Systems",
+          "Source": "veeva",
+          "CareersURL": "https://careers.veeva.com/job-search-results/?search=software&remote=false&ts=Engineering&regions=United+States&office_locations=",
+          "FallbackSources": [
+            "lever",
+            "generic"
+          ],
+          "TimeoutSeconds": 35,
+          "MaxLinks": 180,
+          "GreenhouseBoard": "",
+          "LeverSite": "",
+          "Template": null,
+          "Command": null,
+          "CommandEnv": {},
+          "MyGreenhouseCmd": null,
+          "Orchestration": null,
+          "Disabled": false
+        },
+        "prior_status": {
+          "status": "blocked",
+          "selected_source": "veeva",
+          "attempted_sources": [
+            "veeva"
+          ],
+          "message": "Primary source was previously blocked in a real crawl benchmark case.",
+          "updated_at": ""
+        },
+        "allowed_plan": [
+          "veeva",
+          "lever",
+          "generic"
+        ]
+      },
+      "gold_plan": [
+        "generic",
+        "lever",
+        "veeva"
+      ],
+      "company_name": "Veeva Systems",
+      "primary_source": "veeva",
+      "allowed_plan": [
+        "veeva",
+        "lever",
+        "generic"
+      ],
+      "notes": "Native Veeva feed versus Lever-style fallback and generic fallback.",
+      "probes": [
+        {
+          "source": "veeva",
+          "status": "ok",
+          "message": "5 relevant, 64 quality, 64 raw",
+          "raw_jobs": 64,
+          "quality_jobs": 64,
+          "relevant_jobs": 5,
+          "should_fallback_quality": false,
+          "sample_titles": [
+            "Associate Software Engineer in Test",
+            "Associate Software Engineer in Test",
+            "Software Engineer - Full Stack"
+          ]
+        },
+        {
+          "source": "lever",
+          "status": "error",
+          "message": "could not derive lever site from \"https://careers.veeva.com/job-search-results/?search=software&remote=false&ts=Engineering&regions=United+States&office_locations=\"",
+          "raw_jobs": 0,
+          "quality_jobs": 0,
+          "relevant_jobs": 0,
+          "should_fallback_quality": false
+        },
+        {
+          "source": "generic",
+          "status": "ok",
+          "message": "0 relevant, 3 quality, 3 raw",
+          "raw_jobs": 3,
+          "quality_jobs": 3,
+          "relevant_jobs": 0,
+          "should_fallback_quality": false
+        }
+      ]
+    },
+    {
+      "id": "meta_command:default",
+      "kind": "default",
+      "payload": {
+        "company": {
+          "Name": "Meta",
+          "Source": "command",
+          "CareersURL": "https://www.metacareers.com/jobsearch?page=1",
+          "FallbackSources": [
+            "generic",
+            "greenhouse"
+          ],
+          "TimeoutSeconds": 90,
+          "MaxLinks": 1,
+          "GreenhouseBoard": "",
+          "LeverSite": "",
+          "Template": null,
+          "Command": [
+            "uv",
+            "run",
+            "python",
+            "scripts/fetch_meta_jobs.py"
+          ],
+          "CommandEnv": {
+            "META_DETAIL_FETCH_LIMIT": "12",
+            "META_DETAIL_TIMEOUT_SECONDS": "12",
+            "META_MAX_JOBS": "120",
+            "META_TIMEOUT_MS": "55000",
+            "META_WAIT_AFTER_LOAD_MS": "2500"
+          },
+          "MyGreenhouseCmd": null,
+          "Orchestration": null,
+          "Disabled": false
+        },
+        "prior_status": null,
+        "allowed_plan": [
+          "command",
+          "generic",
+          "greenhouse"
+        ]
+      },
+      "gold_plan": [
+        "command",
+        "generic",
+        "greenhouse"
+      ],
+      "company_name": "Meta",
+      "primary_source": "command",
+      "allowed_plan": [
+        "command",
+        "generic",
+        "greenhouse"
+      ],
+      "notes": "Browser-driven command adapter versus generic fallback.",
+      "probes": [
+        {
+          "source": "command",
+          "status": "ok",
+          "message": "36 relevant, 93 quality, 120 raw",
+          "raw_jobs": 120,
+          "quality_jobs": 93,
+          "relevant_jobs": 36,
+          "should_fallback_quality": false,
+          "sample_titles": [
+            "Software Engineer, Machine Learning",
+            "Software Engineer, Machine Learning",
+            "Software Engineer, Product"
+          ]
+        },
+        {
+          "source": "generic",
+          "status": "ok",
+          "message": "0 relevant, 0 quality, 0 raw",
+          "raw_jobs": 0,
+          "quality_jobs": 0,
+          "relevant_jobs": 0,
+          "should_fallback_quality": false
+        },
+        {
+          "source": "greenhouse",
+          "status": "error",
+          "message": "could not derive greenhouse board from \"https://www.metacareers.com/jobsearch?page=1\"",
+          "raw_jobs": 0,
+          "quality_jobs": 0,
+          "relevant_jobs": 0,
+          "should_fallback_quality": false
+        }
+      ]
+    },
+    {
+      "id": "meta_command:blocked-primary",
+      "kind": "blocked-primary",
+      "payload": {
+        "company": {
+          "Name": "Meta",
+          "Source": "command",
+          "CareersURL": "https://www.metacareers.com/jobsearch?page=1",
+          "FallbackSources": [
+            "generic",
+            "greenhouse"
+          ],
+          "TimeoutSeconds": 90,
+          "MaxLinks": 1,
+          "GreenhouseBoard": "",
+          "LeverSite": "",
+          "Template": null,
+          "Command": [
+            "uv",
+            "run",
+            "python",
+            "scripts/fetch_meta_jobs.py"
+          ],
+          "CommandEnv": {
+            "META_DETAIL_FETCH_LIMIT": "12",
+            "META_DETAIL_TIMEOUT_SECONDS": "12",
+            "META_MAX_JOBS": "120",
+            "META_TIMEOUT_MS": "55000",
+            "META_WAIT_AFTER_LOAD_MS": "2500"
+          },
+          "MyGreenhouseCmd": null,
+          "Orchestration": null,
+          "Disabled": false
+        },
+        "prior_status": {
+          "status": "blocked",
+          "selected_source": "command",
+          "attempted_sources": [
+            "command"
+          ],
+          "message": "Primary source was previously blocked in a real crawl benchmark case.",
+          "updated_at": ""
+        },
+        "allowed_plan": [
+          "command",
+          "generic",
+          "greenhouse"
+        ]
+      },
+      "gold_plan": [
+        "generic",
+        "greenhouse",
+        "command"
+      ],
+      "company_name": "Meta",
+      "primary_source": "command",
+      "allowed_plan": [
+        "command",
+        "generic",
+        "greenhouse"
+      ],
+      "notes": "Browser-driven command adapter versus generic fallback.",
+      "probes": [
+        {
+          "source": "command",
+          "status": "ok",
+          "message": "36 relevant, 93 quality, 120 raw",
+          "raw_jobs": 120,
+          "quality_jobs": 93,
+          "relevant_jobs": 36,
+          "should_fallback_quality": false,
+          "sample_titles": [
+            "Software Engineer, Machine Learning",
+            "Software Engineer, Machine Learning",
+            "Software Engineer, Product"
+          ]
+        },
+        {
+          "source": "generic",
+          "status": "ok",
+          "message": "0 relevant, 0 quality, 0 raw",
+          "raw_jobs": 0,
+          "quality_jobs": 0,
+          "relevant_jobs": 0,
+          "should_fallback_quality": false
+        },
+        {
+          "source": "greenhouse",
+          "status": "error",
+          "message": "could not derive greenhouse board from \"https://www.metacareers.com/jobsearch?page=1\"",
+          "raw_jobs": 0,
+          "quality_jobs": 0,
+          "relevant_jobs": 0,
+          "should_fallback_quality": false
+        }
+      ]
+    }
+  ]
+}

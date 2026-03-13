@@ -1,0 +1,428 @@
+{
+  "metadata": {
+    "version": "2026-03-07",
+    "review_basis": "Hand-reviewed active ambiguity slice from jobs.db after deterministic-first scoring rollout.",
+    "reviewer": "Codex",
+    "source_candidates_file": ".state/job_slm_ambiguity_candidates_20260307.json",
+    "notes": [
+      "These labels target the cases that still reach the ambiguity model: unclear role-fit and unclear internship eligibility.",
+      "Work-authorization remains almost entirely unknown in this slice because explicit auth blockers are handled deterministically upstream.",
+      "Internship status uses not_applicable for roles where internship review should not have been triggered."
+    ]
+  },
+  "cases": [
+    {
+      "fingerprint": "4ca1250c29b0a869053c9ef769f637503a1089342453921a94e8bfe593232348",
+      "expected_role_fit": true,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "unknown",
+      "category": "internship_unknown"
+    },
+    {
+      "fingerprint": "7b1adc40fda8b8f01235bcdf03fb4d5b311bffd92a1d9e684f7d43e1c572ccaf",
+      "expected_role_fit": true,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "unknown",
+      "category": "internship_unknown"
+    },
+    {
+      "fingerprint": "896b2567a420a7b668667be3e3e3c804b13ec13dbcea3ea6769d39ccaa019f65",
+      "expected_role_fit": true,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "unknown",
+      "category": "internship_unknown"
+    },
+    {
+      "fingerprint": "24fbf6e6228c5adf37d7698002b68a9681756b8fe07edd0f92d5671e490304b5",
+      "expected_role_fit": true,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "blocked",
+      "category": "internship_blocked"
+    },
+    {
+      "fingerprint": "5c032c35d37bef68c87abf430ae8d14a43e7e965bf006ec30b2aeed950a2a437",
+      "expected_role_fit": true,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "unknown",
+      "category": "internship_unknown"
+    },
+    {
+      "fingerprint": "bcb983241f64637b770db809c76827f4c7384c1aa64ac55d29decdc59d49c2f1",
+      "expected_role_fit": true,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "blocked",
+      "category": "internship_blocked"
+    },
+    {
+      "fingerprint": "657a99d7768d3a50a0fee15b885746bf694f0b28c96ec4b77f3ecaad555940b9",
+      "expected_role_fit": false,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "unknown",
+      "category": "internship_non_target"
+    },
+    {
+      "fingerprint": "92d19329e5b6ddaeb48d126561e46699af0eb4a95b66a0c097f8dc27cf62cf41",
+      "expected_role_fit": false,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "unknown",
+      "category": "internship_borderline_support"
+    },
+    {
+      "fingerprint": "c14945f94bb077b254635c8e8bc2692c233c7125027531069000d5c5eefa6e2c",
+      "expected_role_fit": true,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "unknown",
+      "category": "internship_unknown"
+    },
+    {
+      "fingerprint": "3cdedc4229b018f14293a5ce2b72cf4e6b410e1b75c0e3629e75f6950badacf9",
+      "expected_role_fit": true,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "not_applicable",
+      "category": "apprenticeship_true"
+    },
+    {
+      "fingerprint": "61671260276eb360d77fdf0c2fd92b85e534331c61c5561098acc2d1c123931b",
+      "expected_role_fit": true,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "not_applicable",
+      "category": "apprenticeship_true"
+    },
+    {
+      "fingerprint": "e6c2c2bb910fdaea615d766925f601a5411d8388973f113b726f9478b3dacc69",
+      "expected_role_fit": false,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "not_applicable",
+      "category": "internship_false_trigger_non_us"
+    },
+    {
+      "fingerprint": "9e0089bbc709659b7f5c902221edcabf0f44e5c83fbbb75b7bf57808b31ea313",
+      "expected_role_fit": true,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "unknown",
+      "category": "internship_unknown"
+    },
+    {
+      "fingerprint": "d7a21823948581171ecf32eedc314404c6049eccbba8db870ddc7167cf8720ef",
+      "expected_role_fit": true,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "unknown",
+      "category": "internship_unknown"
+    },
+    {
+      "fingerprint": "24664bfbc4c0ae952d57945f9a65a79e3efbbcfa871e538512f14e104b0b97b4",
+      "expected_role_fit": true,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "unknown",
+      "category": "internship_unknown"
+    },
+    {
+      "fingerprint": "73a54f4aabd8f265b6e5e55e998cb4f82f2cf49d6e11655a0b048e8b490c3379",
+      "expected_role_fit": true,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "blocked",
+      "category": "internship_blocked"
+    },
+    {
+      "fingerprint": "18d3a3413bdf406819b3ef29b2d2f7690b90489aecbdaf0c58cb18a9fbf24daf",
+      "expected_role_fit": true,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "unknown",
+      "category": "internship_unknown"
+    },
+    {
+      "fingerprint": "47f288f7592dbb819f0d2ac121662b45f4874645555f1d85fd2df6a406fa97e9",
+      "expected_role_fit": true,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "unknown",
+      "category": "internship_unknown"
+    },
+    {
+      "fingerprint": "469a4bdf4ec06047f40403d390921c8e9041884607b093ecb3d0867a98d7515a",
+      "expected_role_fit": false,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "not_applicable",
+      "category": "role_out_hardware"
+    },
+    {
+      "fingerprint": "dc8ba72cd43ad26a42b3de18e9b8845c2bcd989727f3f6a7c6feeb682e198197",
+      "expected_role_fit": false,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "not_applicable",
+      "category": "role_out_legal"
+    },
+    {
+      "fingerprint": "3320ed18613a4ff9fd62049204d79a8d3aa3ba66d46eedb1d84eefd050019141",
+      "expected_role_fit": false,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "not_applicable",
+      "category": "role_out_hardware_security"
+    },
+    {
+      "fingerprint": "c439298fe8bdaceac9f4c5c86f6e582bc0c90bb1207fcda941c1e0c82339e0b3",
+      "expected_role_fit": false,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "not_applicable",
+      "category": "role_out_policy"
+    },
+    {
+      "fingerprint": "26a9ff95d4aaefdafa634d00d8b2bcc68c3df87432a3bf1b908bd1a4f534d1b7",
+      "expected_role_fit": false,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "not_applicable",
+      "category": "role_out_ops"
+    },
+    {
+      "fingerprint": "d3a37bb24de396a3d78961328f378b291bcd698078a58bd71dbd6b277c4864e5",
+      "expected_role_fit": false,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "not_applicable",
+      "category": "role_out_analyst"
+    },
+    {
+      "fingerprint": "d5c201e7926030c0f0b4aa0f47da0b2d305cef91d6dc46aca53e83d425015dd1",
+      "expected_role_fit": false,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "not_applicable",
+      "category": "role_out_hardware"
+    },
+    {
+      "fingerprint": "0378119014744e853c8b1825b2faac9311c9aeb8790cc88a6db1f5ecc1d67282",
+      "expected_role_fit": false,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "not_applicable",
+      "category": "role_out_hardware"
+    },
+    {
+      "fingerprint": "9706c85467c92509860108806c96cf549a4c92d4456a468993fe34a65fcda906",
+      "expected_role_fit": false,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "not_applicable",
+      "category": "role_out_hardware"
+    },
+    {
+      "fingerprint": "7d2775e51449dc399a8944e23b4e87733e8b62bf818369f7aa6e5d04b8b90e3f",
+      "expected_role_fit": false,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "not_applicable",
+      "category": "role_out_legal"
+    },
+    {
+      "fingerprint": "fe82d1310ad15255c694066cd4bab408c2457e6254d726424417970ba4a5e252",
+      "expected_role_fit": false,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "not_applicable",
+      "category": "role_out_ops"
+    },
+    {
+      "fingerprint": "fbb8bf6ef6f78248c1c4186cf7b7c1844e4c896f033e4d5e2fe258cf34fa96c4",
+      "expected_role_fit": false,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "not_applicable",
+      "category": "role_out_marketing_ops"
+    },
+    {
+      "fingerprint": "b044a9809c347adc2ed77f302ab08b41d4e5a5cc3e3872edba3ac057b727d43c",
+      "expected_role_fit": false,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "not_applicable",
+      "category": "role_out_marketing"
+    },
+    {
+      "fingerprint": "017763a643f05459e8b3e08442b2d1f1690a075542ea5d7b48a3300abfefd91f",
+      "expected_role_fit": false,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "not_applicable",
+      "category": "role_out_customer_advocacy"
+    },
+    {
+      "fingerprint": "fa2776b292d6e2da472c637e66845bdd0cba9bff20269ff9f02a7d60b5a5d735",
+      "expected_role_fit": false,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "not_applicable",
+      "category": "role_out_analyst"
+    },
+    {
+      "fingerprint": "9e1e81ab003349f6c4df6d9cee1efd9d20ff1090e23a6a4f6e9dfbbef8777521",
+      "expected_role_fit": false,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "not_applicable",
+      "category": "role_out_marketing"
+    },
+    {
+      "fingerprint": "d6c10653c389da553994985ccd8afb566127dd0f7d13267893e486601414e468",
+      "expected_role_fit": false,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "not_applicable",
+      "category": "role_out_marketing"
+    },
+    {
+      "fingerprint": "bd4226e679a3675f8bbff3f70ae0182708cafcada96ab506408a2d3d41867991",
+      "expected_role_fit": false,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "not_applicable",
+      "category": "role_out_ops"
+    },
+    {
+      "fingerprint": "d6f69aa83ae4feca5bd93b2419c461eb30c14acd44e4a6d123125c5deca68bbd",
+      "expected_role_fit": false,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "not_applicable",
+      "category": "role_out_partner_services"
+    },
+    {
+      "fingerprint": "df052eb63828c6065c4fea850bb406c320b0e0f1cfd2935b11a7822dfa18e8d1",
+      "expected_role_fit": false,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "not_applicable",
+      "category": "role_out_finance"
+    },
+    {
+      "fingerprint": "a146c75ae603a767f5c51eade13e4a367d5258319a9d3ae9530c9d0955f17202",
+      "expected_role_fit": false,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "not_applicable",
+      "category": "role_out_sales_partnerships"
+    },
+    {
+      "fingerprint": "7e082d31c7afb746582227962b1d583dee2b1527d272c89fdfd1d12895f7c48c",
+      "expected_role_fit": false,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "not_applicable",
+      "category": "role_out_finance"
+    },
+    {
+      "fingerprint": "b418dfd22ade1061176cf4c86461dbc817109a6fd8836b9ab41b14e3edd1c67c",
+      "expected_role_fit": false,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "not_applicable",
+      "category": "role_out_compliance"
+    },
+    {
+      "fingerprint": "bb21938a8dfe4d0f40fd7cc3f5861c99ef5e9092765221cddb1d6ae8bf2aa87e",
+      "expected_role_fit": false,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "not_applicable",
+      "category": "role_out_operations"
+    },
+    {
+      "fingerprint": "22af0e8cb320819c502e7b14adf74b933f02b9d116be8049d709883188f27704",
+      "expected_role_fit": false,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "not_applicable",
+      "category": "role_out_legal"
+    },
+    {
+      "fingerprint": "4fd9fa3af635cf3ec453c4480b8637b3ea9e04ca2166f2e1850ef3022a73e9a9",
+      "expected_role_fit": false,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "not_applicable",
+      "category": "role_out_legal"
+    },
+    {
+      "fingerprint": "3a94eacdf442f2f35e8f2f5cedddab63d6c696089c6236c5f3d6669af3286767",
+      "expected_role_fit": false,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "not_applicable",
+      "category": "role_out_strategy_ops"
+    },
+    {
+      "fingerprint": "c553cb27dbb99f9dec749013532597041ad509dd03bc0e9fb841982f3e6d72b6",
+      "expected_role_fit": false,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "not_applicable",
+      "category": "role_out_finance"
+    },
+    {
+      "fingerprint": "dd5264002bc614ebc579b8d1a042e2785590fdf34c74b5d148da64a30f93259d",
+      "expected_role_fit": false,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "not_applicable",
+      "category": "role_out_legal"
+    },
+    {
+      "fingerprint": "34e87e613d7c7c4edb701635b61324363176a77e28b85f641a4d966634c27d63",
+      "expected_role_fit": false,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "not_applicable",
+      "category": "role_out_finance"
+    },
+    {
+      "fingerprint": "3415db3e89e5735a76c6d88aca7684b142a857a22e852c47abc0a7444e1a9468",
+      "expected_role_fit": false,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "not_applicable",
+      "category": "role_out_finance"
+    },
+    {
+      "fingerprint": "4fe0762aaafe6328fc2fb19c7c9baf54e0f7e3e933e57b324f990c52d87a31ae",
+      "expected_role_fit": false,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "not_applicable",
+      "category": "role_out_finance"
+    },
+    {
+      "fingerprint": "4b42df525a6a211c67d52d4bb917f0c4a518dc0ede3e8199dc7800c8789cf661",
+      "expected_role_fit": false,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "not_applicable",
+      "category": "role_out_partnerships"
+    },
+    {
+      "fingerprint": "ce9127c1f49ff8270fd3db6b80f8b53fe2b26c9900c8dfceb1351e61465a7281",
+      "expected_role_fit": false,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "not_applicable",
+      "category": "role_out_legal"
+    },
+    {
+      "fingerprint": "7bb4cb85c1f1be941eecd993bd55a129a655e64c1839abf31816e7d63235e01b",
+      "expected_role_fit": false,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "not_applicable",
+      "category": "role_out_support"
+    },
+    {
+      "fingerprint": "c4a593762f463448de9c753f826e62b6365b2ef3375b1f82ccee6d63e07ad15e",
+      "expected_role_fit": false,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "not_applicable",
+      "category": "role_out_legal"
+    },
+    {
+      "fingerprint": "4d26b97a9a717bdc4251e9db2a2b82ec26246d0c9f8522429702a8c8fb26e37e",
+      "expected_role_fit": false,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "not_applicable",
+      "category": "role_out_strategy_ops"
+    },
+    {
+      "fingerprint": "9d4fb6d89f50eb3f85264eec9037e6ab2c344524e380c42b59c88537f924e9de",
+      "expected_role_fit": false,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "not_applicable",
+      "category": "role_out_finance"
+    },
+    {
+      "fingerprint": "029b30b768648d01dc00a6db6c75d741e2cef95ac596c25fb14d6009f2e69f3e",
+      "expected_role_fit": false,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "not_applicable",
+      "category": "role_out_risk_analyst"
+    },
+    {
+      "fingerprint": "3cff3137c97f61f6bc970025d24e059499196d6b4d231183342ce62fa2000d41",
+      "expected_role_fit": false,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "not_applicable",
+      "category": "role_out_operations"
+    },
+    {
+      "fingerprint": "2288f8c0bd4828e0f860d6bd9621af3907bdc44daa31e44a5a24b83e987acca4",
+      "expected_role_fit": false,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "not_applicable",
+      "category": "role_out_compliance"
+    }
+  ]
+}

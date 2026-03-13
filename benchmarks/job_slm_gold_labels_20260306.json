@@ -1,0 +1,297 @@
+{
+  "metadata": {
+    "version": "2026-03-06",
+    "review_basis": "Hand-reviewed from jobs.db against Monitor role-fit, work-auth, and internship-eligibility policy.",
+    "reviewer": "Codex"
+  },
+  "cases": [
+    {
+      "fingerprint": "669ac14e94c9c07570e0577ccdd61209f1b665c06db530df94dbb4c34d7062e7",
+      "expected_role_fit": true,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "not_applicable",
+      "category": "positive_software",
+      "review_notes": "Clear IC software engineer role on Apple accessibility products; US-based and no explicit work-auth restriction."
+    },
+    {
+      "fingerprint": "ccb0a6ef11eae526aa1f291113fab02bfdbf1a8d454487ccc91ff88ec3483b5c",
+      "expected_role_fit": true,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "not_applicable",
+      "category": "positive_data",
+      "review_notes": "Software engineer role focused on data pipelines and multimodal processing; target discipline and acceptable level."
+    },
+    {
+      "fingerprint": "310a4c2ca26e13ab7823cb5306c9605f6533ab96fa828225b2b5e009f23ccc36",
+      "expected_role_fit": true,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "not_applicable",
+      "category": "positive_ai",
+      "review_notes": "Software engineer role building AI and data platforms in Java and Python; target AI/data platform scope."
+    },
+    {
+      "fingerprint": "3dcae9c4a130095640755ce007ec5e5e112eda19123a392fbafeb6ad5ca8b161",
+      "expected_role_fit": true,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "not_applicable",
+      "category": "positive_cloud",
+      "review_notes": "IC software engineer role for edge infrastructure and systems architecture; clearly in cloud/platform scope."
+    },
+    {
+      "fingerprint": "64ec64b18ed586dcd5a83f09540d47825fe53fc37cea14d3a879dad63c8ce824",
+      "expected_role_fit": true,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "not_applicable",
+      "category": "positive_backend",
+      "review_notes": "Software Engineer 3 on MongoDB cloud telemetry with backend focus; level 3 is in-scope."
+    },
+    {
+      "fingerprint": "3cd4b646e7ac7716a72a7423b92673c1a0ff20e49713b540550ebb70b6c00250",
+      "expected_role_fit": true,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "not_applicable",
+      "category": "positive_data",
+      "review_notes": "Analytics/data engineer building pipelines and metrics foundations; target data role and US-based."
+    },
+    {
+      "fingerprint": "10ebc813260944ac92a19936bd2d143e5499ad0839d8e63cefc7e85e13331bcd",
+      "expected_role_fit": true,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "not_applicable",
+      "category": "positive_data",
+      "review_notes": "Research Data Scientist is an individual-contributor technical data role and should be in-scope."
+    },
+    {
+      "fingerprint": "b6fef6087c03865390a54540509bcd8641926302bcee8aacdef155dc0f607b7b",
+      "expected_role_fit": true,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "not_applicable",
+      "category": "positive_fullstack",
+      "review_notes": "Explicit full stack software engineer role building AI-powered product experiences in React and APIs."
+    },
+    {
+      "fingerprint": "1560220b2d7e5efc2e2cdc628ba77f719b6df6397973dd9d13e89aac5cbf678b",
+      "expected_role_fit": true,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "not_applicable",
+      "category": "positive_platform",
+      "review_notes": "Infrastructure software engineer on data platform and large-scale systems; target platform/data scope."
+    },
+    {
+      "fingerprint": "27a88c81899c85d66f0738a4592443fad09c6d2723e9ee0a628d10fe3b959eb7",
+      "expected_role_fit": true,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "not_applicable",
+      "category": "positive_cloud",
+      "review_notes": "Site reliability developer 3 for customer-facing cloud services is a valid cloud/platform role."
+    },
+    {
+      "fingerprint": "4bf60064285c73fcd4a80f69ca530a868b1eddfdbbc87a939f0f3eb35505142c",
+      "expected_role_fit": true,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "not_applicable",
+      "category": "positive_ai",
+      "review_notes": "Software engineer for AWS Neuron distributed ML training and model enablement; strong AI/ML fit."
+    },
+    {
+      "fingerprint": "4f0a27b50674630920c2f1026ef884c516961e3ef919a4929adb0c5b24266ba4",
+      "expected_role_fit": true,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "not_applicable",
+      "category": "positive_ai",
+      "review_notes": "AI research engineer building LLM and generative AI product capabilities; clear target AI role."
+    },
+    {
+      "fingerprint": "05a79c89cc4c226e46e56989da8459f7f7fb27fe2c31ca66b7daaffa6a109ecd",
+      "expected_role_fit": true,
+      "expected_work_auth": "blocked",
+      "expected_internship_status": "not_applicable",
+      "category": "blocked_positive",
+      "review_notes": "Target software developer role, but explicit U.S. citizen requirement and security clearance make work auth blocked."
+    },
+    {
+      "fingerprint": "cddaefd100878a1a5f67afad0796780d20d0e967714bad185404e84873e02f02",
+      "expected_role_fit": true,
+      "expected_work_auth": "blocked",
+      "expected_internship_status": "not_applicable",
+      "category": "blocked_positive",
+      "review_notes": "Target software engineer role on data lakehouse systems; export-control language explicitly blocks work auth."
+    },
+    {
+      "fingerprint": "37abf769bc99ba830a4bd0cce3c1f011fdc9bc51da467fcb41a1fe2f35e5eecf",
+      "expected_role_fit": true,
+      "expected_work_auth": "blocked",
+      "expected_internship_status": "not_applicable",
+      "category": "blocked_positive",
+      "review_notes": "Embedded flight-computer software engineer remains in software scope; export-control restriction is explicit."
+    },
+    {
+      "fingerprint": "8d136dfc10cd10e95f6da28f5562eb188f7e6139c59f884e3dfeb6f11309819e",
+      "expected_role_fit": false,
+      "expected_work_auth": "blocked",
+      "expected_internship_status": "not_applicable",
+      "category": "blocked_negative",
+      "review_notes": "Senior Data Engineer is above target seniority, and the title explicitly says clearance required."
+    },
+    {
+      "fingerprint": "4ec4ea4f415ee3d16af53875a730683bda843fa009d4e7c5e2bc91573e409923",
+      "expected_role_fit": false,
+      "expected_work_auth": "blocked",
+      "expected_internship_status": "not_applicable",
+      "category": "blocked_negative",
+      "review_notes": "Title says SDE, but description explicitly calls it a Senior Software Engineer role that leads and mentors; export control blocks work auth."
+    },
+    {
+      "fingerprint": "bf1a5140d8b27d40c182092dce9828d99ff962587355c595edea0969472d24e7",
+      "expected_role_fit": false,
+      "expected_work_auth": "blocked",
+      "expected_internship_status": "not_applicable",
+      "category": "blocked_negative",
+      "review_notes": "Configuration analyst is outside target discipline, and the description explicitly says no visa sponsorship."
+    },
+    {
+      "fingerprint": "029b30b768648d01dc00a6db6c75d741e2cef95ac596c25fb14d6009f2e69f3e",
+      "expected_role_fit": false,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "not_applicable",
+      "category": "negative_function",
+      "review_notes": "Fraud strategy analyst is a business/risk analyst role, not a target software/data engineering role."
+    },
+    {
+      "fingerprint": "4fe0762aaafe6328fc2fb19c7c9baf54e0f7e3e933e57b324f990c52d87a31ae",
+      "expected_role_fit": false,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "not_applicable",
+      "category": "negative_function",
+      "review_notes": "Finance and Strategy Partner is a finance strategy role, not a target engineering/data role."
+    },
+    {
+      "fingerprint": "e47bf58b2651eea2061b604bc358d675a93b228c4d99ddbf286bc6222a1bcc00",
+      "expected_role_fit": false,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "not_applicable",
+      "category": "negative_seniority",
+      "review_notes": "Engineering Leader is a leadership role rather than the target early-career individual-contributor range."
+    },
+    {
+      "fingerprint": "ee5c76c0a3957ade074bd09ee22b5de79105a7773dd09b8370007f7c2f0339c7",
+      "expected_role_fit": false,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "not_applicable",
+      "category": "negative_hardware",
+      "review_notes": "Mechanical engineer for data center facilities is not a target software, data, or AI role."
+    },
+    {
+      "fingerprint": "9d250b7c24f2e150879b00cbc5315ee942f2b33d0367bbea94b103df7bff7a23",
+      "expected_role_fit": false,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "not_applicable",
+      "category": "negative_operations",
+      "review_notes": "Data center technician is an operations/technician role rather than target software engineering."
+    },
+    {
+      "fingerprint": "77298d1c6584ac0fbcc97af7deeb74ff4c044b7e82083155cbe0471e97a81762",
+      "expected_role_fit": false,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "not_applicable",
+      "category": "negative_seniority",
+      "review_notes": "Senior Director of Data Center Operations is both too senior and outside target engineering scope."
+    },
+    {
+      "fingerprint": "2d10872883c26a92ffa663608791fd2b4494f138380c5dc8668c8c15682fb3f5",
+      "expected_role_fit": false,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "not_applicable",
+      "category": "negative_function",
+      "review_notes": "Account Partner is a sales/account role and is also non-US."
+    },
+    {
+      "fingerprint": "60d749c1832a9ed0ca2e0972dc596823eb4c21d3052d0f421971b8771e879a7c",
+      "expected_role_fit": false,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "not_applicable",
+      "category": "negative_seniority",
+      "review_notes": "Vice President software engineering role is above target seniority even though the function is technical."
+    },
+    {
+      "fingerprint": "c96682fe5ff2712317ed466dc4680578403bafbf46cd5afc5d8b0a2a1252a303",
+      "expected_role_fit": false,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "not_applicable",
+      "category": "negative_non_us",
+      "review_notes": "Vice President software engineering role is too senior and located in India."
+    },
+    {
+      "fingerprint": "31850d565492ca7ac40f1fa64724636b0b2e1f7caf11f2112e8620a7f65aff3c",
+      "expected_role_fit": false,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "not_applicable",
+      "category": "negative_seniority",
+      "review_notes": "Senior manager role is above the early-career IC target even though the domain is AI infrastructure."
+    },
+    {
+      "fingerprint": "bd4226e679a3675f8bbff3f70ae0182708cafcada96ab506408a2d3d41867991",
+      "expected_role_fit": false,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "not_applicable",
+      "category": "negative_function",
+      "review_notes": "Operations analyst for professional services is outside target engineering/data scope and is non-US."
+    },
+    {
+      "fingerprint": "304fd05ae08f793ced4bfc1a7c2ed92ee1549991fe0c5a1ac2fb46b42f9f471f",
+      "expected_role_fit": false,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "not_applicable",
+      "category": "negative_function",
+      "review_notes": "Consulting Architect is too senior/client-facing and located in India."
+    },
+    {
+      "fingerprint": "ffb1bf7de9d61ebfccad127cd76c215aca771c8ee2e8b924cf1d7f8349eca43b",
+      "expected_role_fit": true,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "unknown",
+      "category": "internship_target",
+      "review_notes": "Target data engineering internship; text mentions school dates but does not explicitly require current enrollment."
+    },
+    {
+      "fingerprint": "8900dd17492b8288408b30b7c56708e65343c993f71cd87e151b5a0e7ff38464",
+      "expected_role_fit": true,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "blocked",
+      "category": "internship_blocked",
+      "review_notes": "Target AI/systems internship, but the description explicitly requires a PhD candidate graduating in 2026-2028."
+    },
+    {
+      "fingerprint": "1174f6e4ea78d5e08eda5a8913b41ec5b7be4e54d8aa0bf4a59cba2ca0a32d92",
+      "expected_role_fit": true,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "blocked",
+      "category": "internship_blocked",
+      "review_notes": "Software engineer internship is in-scope, but posting explicitly says current Master or PhD students must be enrolled before and after internship."
+    },
+    {
+      "fingerprint": "6de7e3925f46b5ee75feb7a737f2afff4535f396075d7223766570d31bed749f",
+      "expected_role_fit": true,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "blocked",
+      "category": "internship_blocked",
+      "review_notes": "Cloud engineer internship is in-scope, but posting explicitly says current Master's students and enrolled before and after internship."
+    },
+    {
+      "fingerprint": "140de5861a6b97244618322b4e31e553c40f89b604d4655c455700fde69e31bb",
+      "expected_role_fit": false,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "unknown",
+      "category": "internship_non_target",
+      "review_notes": "Sales development internship is outside target discipline; no explicit current-enrollment rule is present in the captured text."
+    },
+    {
+      "fingerprint": "981ad190f30815bae042b6ea9f34a85c986594cac68e9fec3424778e6aba1a2c",
+      "expected_role_fit": false,
+      "expected_work_auth": "unknown",
+      "expected_internship_status": "unknown",
+      "category": "internship_non_target",
+      "review_notes": "Support enablement internship is customer-support/CX focused rather than a target software, AI, or data role."
+    }
+  ]
+}

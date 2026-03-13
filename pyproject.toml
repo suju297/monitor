@@ -1,0 +1,17 @@
+[project]
+name = "career-monitor"
+version = "0.1.0"
+description = "Career page monitoring with adapter swarms and email alerts."
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+  "beautifulsoup4==4.13.4",
+  "PyYAML==6.0.2",
+  "requests==2.32.5",
+]
+
+[project.optional-dependencies]
+playwright = [
+  "playwright==1.55.0",
+]
+

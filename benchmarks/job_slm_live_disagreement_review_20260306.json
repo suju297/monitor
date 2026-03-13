@@ -1,0 +1,132 @@
+{
+  "reviewed_at": "2026-03-06",
+  "source_cases_file": ".state/job_slm_cases_live_compare_small_20260306.json",
+  "source_benchmark_file": ".state/bench_qwen25_vs_ministral_live_compare_small_20260306.json",
+  "notes": [
+    "This file captures a manual review of the qwen2.5:3b vs ministral-3:3b disagreement cases from a fixed live jobs.db slice.",
+    "Several silver labels from jobs.db were clearly wrong for the target profile, especially non-US, senior, consulting, strategist, and hardware roles that had been labeled role_fit=true.",
+    "Two titles are duplicated in the sampled slice: Amazon FPGA Engineer and Amazon Software Development Engineer."
+  ],
+  "cases": [
+    {
+      "id": "db_004",
+      "company": "Amazon",
+      "title": "FPGA Engineer, LEO KMM FPGA",
+      "manual_role_fit": false,
+      "manual_work_auth": "blocked",
+      "winner": "ministral-3:3b",
+      "review_notes": "Hardware-focused FPGA role. Export control text explicitly blocks F-1 OPT."
+    },
+    {
+      "id": "db_005",
+      "company": "Anthropic",
+      "title": "Forward Deployed Engineer, Applied AI (Federal Civilian)",
+      "manual_role_fit": true,
+      "manual_work_auth": "unknown",
+      "winner": "qwen2.5:3b",
+      "review_notes": "Still an engineering role in scope. Federal-civilian customer context does not itself create an explicit work-auth block."
+    },
+    {
+      "id": "db_006",
+      "company": "Elastic",
+      "title": "Consulting Architect - UK Public Sector",
+      "manual_role_fit": false,
+      "manual_work_auth": "blocked",
+      "winner": "ministral-3:3b",
+      "review_notes": "Non-US consulting architect role and requires current security clearance."
+    },
+    {
+      "id": "db_010",
+      "company": "Dropbox",
+      "title": "Research and Insights Intern (Summer 2026)",
+      "manual_role_fit": false,
+      "manual_work_auth": "unknown",
+      "winner": "ministral-3:3b",
+      "review_notes": "UX research internship, not a target software, cloud, AI engineering, data engineering, or data analyst role."
+    },
+    {
+      "id": "db_021",
+      "company": "Oracle",
+      "title": "Senior Configuration Analyst - Oracle Health Charge Services (hybrid Kansas City MO office)",
+      "manual_role_fit": false,
+      "manual_work_auth": "blocked",
+      "winner": "ministral-3:3b",
+      "review_notes": "Configuration analyst is out of scope, and the posting explicitly says no visa sponsorship."
+    },
+    {
+      "id": "db_023",
+      "company": "Amazon",
+      "title": "Software Development Engineer",
+      "manual_role_fit": true,
+      "manual_work_auth": "blocked",
+      "winner": "ministral-3:3b",
+      "review_notes": "Real software engineering role in scope. Export control requirement explicitly blocks F-1 OPT."
+    },
+    {
+      "id": "db_024",
+      "company": "Stripe",
+      "title": "User Risk Strategist, Deal Advisory",
+      "manual_role_fit": false,
+      "manual_work_auth": "unknown",
+      "winner": "ministral-3:3b",
+      "review_notes": "Risk strategist role is out of scope for the target engineering/data profile."
+    },
+    {
+      "id": "db_025",
+      "company": "Amazon",
+      "title": "FPGA Engineer, LEO KMM FPGA",
+      "manual_role_fit": false,
+      "manual_work_auth": "blocked",
+      "winner": "ministral-3:3b",
+      "review_notes": "Duplicate of db_004."
+    },
+    {
+      "id": "db_027",
+      "company": "Grafana Labs",
+      "title": "Software Engineer - Platform InfraCore | USA | Remote",
+      "manual_role_fit": false,
+      "manual_work_auth": "unknown",
+      "winner": "ministral-3:3b",
+      "review_notes": "Description says Canadian time zones only and frames the role as Senior Software Engineer, so it is out of scope."
+    },
+    {
+      "id": "db_028",
+      "company": "Amazon",
+      "title": "Software Development Engineer",
+      "manual_role_fit": true,
+      "manual_work_auth": "blocked",
+      "winner": "ministral-3:3b",
+      "review_notes": "Duplicate of db_023."
+    },
+    {
+      "id": "db_030",
+      "company": "Veeva Systems",
+      "title": "Cloud Software Consultant (Remote)",
+      "manual_role_fit": false,
+      "manual_work_auth": "unknown",
+      "winner": "qwen2.5:3b",
+      "review_notes": "Non-US consultant role in Hungary. No explicit work-auth blocking language in the text provided."
+    },
+    {
+      "id": "db_031",
+      "company": "Elastic",
+      "title": "Consulting Architect, Public Sector - Netherlands",
+      "manual_role_fit": false,
+      "manual_work_auth": "blocked",
+      "winner": "ministral-3:3b",
+      "review_notes": "Non-US consulting architect role and requires current security clearance."
+    }
+  ],
+  "corrected_summary": {
+    "qwen2.5:3b": {
+      "role_fit_accuracy": 0.8065,
+      "work_auth_accuracy": 0.8065,
+      "joint_accuracy": 0.6774
+    },
+    "ministral-3:3b": {
+      "role_fit_accuracy": 0.9677,
+      "work_auth_accuracy": 0.9355,
+      "joint_accuracy": 0.9355
+    }
+  }
+}

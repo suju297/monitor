@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Greenhouse Observer</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 12px;
+        width: 360px;
+        font: 13px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        color: #1b1f23;
+        background: #f7f6f3;
+      }
+      h1 {
+        margin: 0 0 10px;
+        font-size: 16px;
+      }
+      .section {
+        margin-bottom: 12px;
+        padding: 10px;
+        border: 1px solid #d6d1c7;
+        background: #ffffff;
+        border-radius: 8px;
+      }
+      label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+      }
+      .checkbox-label {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        font-weight: 600;
+      }
+      .checkbox-label input {
+        width: auto;
+        margin: 0;
+      }
+      input,
+      select,
+      button {
+        width: 100%;
+        box-sizing: border-box;
+        font: inherit;
+      }
+      input,
+      select {
+        margin-top: 4px;
+        padding: 6px 8px;
+      }
+      button {
+        margin-top: 8px;
+        padding: 8px 10px;
+        border: 1px solid #c5bfb2;
+        border-radius: 6px;
+        background: #efe7d8;
+        cursor: pointer;
+      }
+      button.primary {
+        background: #d4ead7;
+      }
+      button.warn {
+        background: #f3ddd4;
+      }
+      .muted {
+        color: #5d6770;
+      }
+      .status {
+        white-space: pre-wrap;
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 12px;
+      }
+      .recommendation {
+        margin-top: 8px;
+        padding: 8px;
+        border-radius: 6px;
+        background: #f3f7fb;
+      }
+      .actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+      .full {
+        grid-column: 1 / -1;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Greenhouse Observer</h1>
+
+    <div class="section">
+      <label>
+        Backend URL
+        <input id="backendBaseUrl" type="text" placeholder="http://127.0.0.1:8776" />
+      </label>
+      <label class="checkbox-label">
+        <input id="autoObserve" type="checkbox" />
+        Automatic Observation
+      </label>
+      <label>
+        Resume Decision Source
+        <select id="resumeDecisionSource">
+          <option value="manual">manual</option>
+          <option value="chatgpt">chatgpt</option>
+          <option value="assistant">assistant</option>
+          <option value="mixed">mixed</option>
+        </select>
+      </label>
+      <label>
+        External Recommendation
+        <input id="externalResumeRecommendation" type="text" placeholder="ai, cloud, distributed_systems" />
+      </label>
+      <button id="saveConfig" class="primary">Save Settings</button>
+    </div>
+
+    <div class="section">
+      <div id="tabInfo" class="muted">Checking current tab...</div>
+      <div id="recommendation" class="recommendation muted">Waiting for recommendation...</div>
+      <div class="actions">
+        <button id="refreshRecommendation">Refresh Recommendation</button>
+        <button id="refreshStatus">Refresh Status</button>
+        <button id="startNow">Observe This Tab Now</button>
+        <button id="uploadNow" class="warn">Upload Current Session</button>
+      </div>
+    </div>
+
+    <div class="section">
+      <div id="status" class="status muted">Idle.</div>
+    </div>
+
+    <div class="section">
+      <div class="muted">Recent Sessions For This Job</div>
+      <div id="history" class="status muted">No history loaded.</div>
+    </div>
+
+    <script src="popup.js"></script>
+  </body>
+</html>

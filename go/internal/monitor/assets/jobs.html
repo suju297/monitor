@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jobs Dashboard</title>
+  <style>
+    :root {
+      --bg: #f7f8f4;
+      --panel: #ffffff;
+      --text: #1d2428;
+      --muted: #5d6770;
+      --line: #d8ddde;
+      --accent: #0f766e;
+      --shadow: 0 18px 45px rgba(22, 28, 45, 0.08);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 12% -15%, #b6efe7 0%, transparent 42%),
+        radial-gradient(circle at 88% -12%, #ffe0b8 0%, transparent 38%),
+        var(--bg);
+    }
+    .wrap { max-width: 1360px; margin: 0 auto; padding: 22px 18px 30px; }
+    .hero { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+    h1 { margin: 0; font-size: clamp(1.2rem, 3vw, 1.8rem); letter-spacing: 0.2px; }
+    .sub { color: var(--muted); font-size: 0.92rem; margin-top: 3px; }
+    .actions { display: flex; gap: 8px; flex-wrap: wrap; }
+    .btn, button {
+      border: 0;
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      color: white;
+      background: var(--accent);
+    }
+    .btn-ghost { background: #eef2f2; color: #20292c; }
+    .controls {
+      display: grid;
+      grid-template-columns: 1.3fr 0.9fr 0.8fr 0.6fr 0.5fr auto;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    input, select {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 10px 12px;
+      font: inherit;
+      background: white;
+      color: var(--text);
+    }
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; margin-bottom: 12px; }
+    .card { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 12px; box-shadow: var(--shadow); }
+    .k { color: var(--muted); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.7px; }
+    .v { font-size: 1.35rem; font-weight: 700; margin-top: 4px; }
+    .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow); overflow: hidden; }
+    .panel h2 { margin: 0; padding: 11px 12px; border-bottom: 1px solid var(--line); font-size: 1rem; }
+    .table-wrap { max-height: 70vh; overflow: auto; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+    th, td { border-bottom: 1px solid #e9eeef; padding: 8px 10px; vertical-align: top; }
+    th { position: sticky; top: 0; background: #f3f7f6; text-align: left; z-index: 2; }
+    a.job-link { color: #0b6e66; text-decoration: none; font-weight: 600; }
+    a.job-link:hover { text-decoration: underline; }
+    .muted { color: var(--muted); font-size: 0.84rem; }
+    .mono { font-family: "IBM Plex Mono", "SFMono-Regular", monospace; font-size: 0.77rem; word-break: break-all; }
+    .apply-cell { min-width: 200px; }
+    .assistant-status { margin-bottom: 6px; }
+    .pill {
+      display: inline-block;
+      font-size: 0.7rem;
+      border-radius: 999px;
+      padding: 2px 8px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      border: 1px solid transparent;
+    }
+    .pill.done { background: #e7f6f0; color: #17624a; border-color: #c8e8dc; }
+    .pill.queued { background: #eff3f7; color: #516273; border-color: #dbe2ea; }
+    .pill.running { background: #fdf3df; color: #955d18; border-color: #efd7ac; }
+    .pill.unknown { background: #eff3f7; color: #516273; border-color: #dbe2ea; }
+    .pill.blocked { background: #fee7e3; color: #9b3a2e; border-color: #f8c9bf; }
+    .status-buttons { display: flex; gap: 6px; flex-wrap: wrap; }
+    .status-btn {
+      border: 1px solid #cfd6de;
+      border-radius: 999px;
+      padding: 5px 10px;
+      background: white;
+      color: #22303d;
+      font: inherit;
+      font-size: 0.73rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .status-btn:disabled { cursor: wait; opacity: 0.65; }
+    .status-btn.applied.active { background: #dff5e6; border-color: #9ad2ae; color: #155d37; }
+    .status-btn.not-applied.active { background: #f5eadf; border-color: #d8b891; color: #8b4a11; }
+    .status-meta { margin-top: 6px; color: var(--muted); font-size: 0.72rem; white-space: nowrap; }
+    @media (max-width: 980px) {
+      .controls { grid-template-columns: 1fr; }
+      .table-wrap { max-height: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="hero">
+      <div>
+        <h1>Jobs Dashboard</h1>
+        <div class="sub" id="meta">Loading...</div>
+      </div>
+      <div class="actions">
+        <a class="btn btn-ghost" href="/">Crawler Monitor</a>
+        <button id="btn-refresh">Refresh</button>
+      </div>
+    </div>
+
+    <div class="controls">
+      <input id="q" placeholder="Search company, title, url, team, location..." />
+      <select id="company"></select>
+      <select id="source"></select>
+      <select id="sort">
+        <option value="newest">Newest First</option>
+        <option value="oldest">Oldest First</option>
+        <option value="company">Company A-Z</option>
+        <option value="title">Title A-Z</option>
+      </select>
+      <select id="limit">
+        <option value="200">200</option>
+        <option value="500" selected>500</option>
+        <option value="1000">1000</option>
+      </select>
+      <button id="btn-apply">Apply</button>
+    </div>
+
+    <div class="cards" id="cards"></div>
+
+    <div class="panel">
+      <h2>Jobs</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>First Seen</th>
+              <th>Company</th>
+              <th>Title</th>
+              <th>Location</th>
+              <th>Team</th>
+              <th>Applied?</th>
+            </tr>
+          </thead>
+          <tbody id="jobs-table"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const $ = (id) => document.getElementById(id);
+    const esc = (v) => String(v ?? "").replace(/[&<>\"']/g, (c) => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '\"':"&quot;", "'":"&#039;" }[c]));
+    let state = { companies: [], jobs: [], pending: {} };
+
+    function normalizeStatus(value) {
+      const normalized = String(value ?? "").trim().toLowerCase();
+      if (normalized === "applied") return "applied";
+      if (normalized === "not_applied" || normalized === "not-applied" || normalized === "not applied") return "not_applied";
+      return "";
+    }
+
+    function formatSavedAt(value) {
+      const candidate = String(value ?? "").trim();
+      if (!candidate) return "Not set";
+      const parsed = new Date(candidate);
+      if (Number.isNaN(parsed.getTime())) return `Saved ${candidate}`;
+      return `Saved ${parsed.toLocaleString()}`;
+    }
+
+    function queryParams() {
+      return new URLSearchParams({
+        q: $("q").value.trim(),
+        company: $("company").value || "",
+        source: $("source").value || "",
+        sort: $("sort").value || "newest",
+        limit: $("limit").value || "500",
+      });
+    }
+
+    function renderCards(summary) {
+      const cards = [
+        ["Active Jobs", summary.total_jobs ?? 0],
+        ["Filtered", summary.filtered_jobs ?? 0],
+        ["Companies", summary.companies_count ?? 0],
+        ["Latest Seen", summary.latest_first_seen_local || "-"],
+      ];
+      $("cards").innerHTML = cards.map(([k, v]) => `<div class="card"><div class="k">${esc(k)}</div><div class="v">${esc(v)}</div></div>`).join("");
+    }
+
+    function renderCompanyFilter(companies, selected) {
+      const all = `<option value="">All Companies</option>`;
+      const options = companies.map((name) => `<option value="${esc(name)}" ${selected === name ? "selected" : ""}>${esc(name)}</option>`).join("");
+      $("company").innerHTML = all + options;
+    }
+
+    function sourceLabel(value) {
+      return String(value || "")
+        .split(/[_-]+/)
+        .filter(Boolean)
+        .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+        .join(" ");
+    }
+
+    function assistantBadge(job) {
+      const source = String(job.assistant_last_source || "").trim();
+      if (!source) return "";
+      const outcome = String(job.assistant_last_outcome || "").trim().toLowerCase();
+      const reviewPending = Math.max(0, Number(job.assistant_last_review_pending_count || 0));
+      const currentStatus = normalizeStatus(job.application_status);
+      const confirmed = Boolean(job.assistant_last_confirmation_detected);
+      let label = "Observed";
+      let tone = "unknown";
+      if (outcome === "submitted" && source === "playwright_run" && confirmed) {
+        label = "Assistant Applied";
+        tone = "done";
+      } else if (outcome === "submitted" && currentStatus === "applied") {
+        label = "Observed Applied";
+        tone = "done";
+      } else if (outcome === "review_required" || reviewPending > 0) {
+        label = "Under Review";
+        tone = "queued";
+      } else if (outcome === "eligible") {
+        label = "Ready";
+        tone = "running";
+      } else if (outcome === "not_ready") {
+        label = "Needs Attention";
+        tone = "blocked";
+      }
+      const details = [sourceLabel(source)];
+      if (reviewPending > 0) details.unshift(`${reviewPending} review pending`);
+      if (job.assistant_last_sync_at) details.push(`Last sync ${formatSavedAt(job.assistant_last_sync_at)}`);
+      return `<div class="assistant-status"><span class="pill ${esc(tone)}" title="${esc(details.join(" · "))}">${esc(label)}</span></div>`;
+    }
+
+    function renderSourceFilter(sources, selected) {
+      const all = `<option value="">All Sources</option>`;
+      const options = sources
+        .map((name) => `<option value="${esc(name)}" ${selected === name ? "selected" : ""}>${esc(sourceLabel(name))}</option>`)
+        .join("");
+      $("source").innerHTML = all + options;
+    }
+
+    function renderJobs(jobs) {
+      if (!jobs.length) {
+        $("jobs-table").innerHTML = `<tr><td colspan="6" class="muted">No jobs match your filters.</td></tr>`;
+        return;
+      }
+      $("jobs-table").innerHTML = jobs.map((j) => `
+        <tr>
+          <td>${esc(j.first_seen_local || "-")}</td>
+          <td><b>${esc(j.company || "-")}</b></td>
+          <td><a class="job-link" href="${esc(j.url || "#")}" target="_blank" rel="noopener noreferrer">${esc(j.title || j.url || "-")}</a></td>
+          <td>${esc(j.location || "-")}</td>
+          <td>${esc(j.team || "-")}</td>
+          <td class="apply-cell">
+            ${assistantBadge(j)}
+            <div class="status-buttons">
+              <button class="status-btn applied ${normalizeStatus(j.application_status) === "applied" ? "active" : ""}" data-fingerprint="${esc(j.fingerprint || "")}" data-status="applied" ${!j.fingerprint || state.pending[j.fingerprint] ? "disabled" : ""}>Applied</button>
+              <button class="status-btn not-applied ${normalizeStatus(j.application_status) === "not_applied" ? "active" : ""}" data-fingerprint="${esc(j.fingerprint || "")}" data-status="not_applied" ${!j.fingerprint || state.pending[j.fingerprint] ? "disabled" : ""}>Not Applied</button>
+            </div>
+            <div class="status-meta">${state.pending[j.fingerprint] ? "Saving..." : esc(formatSavedAt(j.application_updated_at))}</div>
+          </td>
+        </tr>
+      `).join("");
+    }
+
+    async function loadJobs() {
+      const res = await fetch(`/api/jobs?${queryParams().toString()}`, { cache: "no-store" });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const data = await res.json();
+      state.companies = data.filters?.companies || [];
+      state.jobs = data.jobs || [];
+      renderCompanyFilter(state.companies, data.filters?.company || "");
+      renderSourceFilter(data.filters?.source_options || [], data.filters?.source || "");
+      renderCards(data.summary || {});
+      renderJobs(state.jobs);
+      $("meta").textContent = `Updated: ${data.summary?.generated_at || "-"} | Showing ${data.summary?.filtered_jobs || 0} active job(s)`;
+    }
+
+    async function updateApplicationStatus(fingerprint, nextStatus) {
+      if (!fingerprint) return;
+      const index = state.jobs.findIndex((job) => job.fingerprint === fingerprint);
+      if (index < 0) return;
+      const currentStatus = normalizeStatus(state.jobs[index].application_status);
+      const previousUpdatedAt = state.jobs[index].application_updated_at || "";
+      const requestedStatus = currentStatus === nextStatus ? "" : nextStatus;
+      state.pending[fingerprint] = true;
+      state.jobs[index] = { ...state.jobs[index], application_status: requestedStatus };
+      renderJobs(state.jobs);
+      try {
+        const res = await fetch("/api/jobs/application-status", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ fingerprint, status: requestedStatus }),
+        });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+        state.jobs[index] = {
+          ...state.jobs[index],
+          application_status: normalizeStatus(data.status),
+          application_updated_at: data.updated_at || "",
+        };
+      } catch (err) {
+        state.jobs[index] = {
+          ...state.jobs[index],
+          application_status: currentStatus,
+          application_updated_at: previousUpdatedAt,
+        };
+        $("meta").textContent = `Jobs update error: ${String(err)}`;
+      } finally {
+        delete state.pending[fingerprint];
+        renderJobs(state.jobs);
+      }
+    }
+
+    async function refresh() {
+      try {
+        await loadJobs();
+      } catch (err) {
+        $("meta").textContent = `Jobs fetch error: ${String(err)}`;
+      }
+    }
+
+    $("btn-apply").addEventListener("click", refresh);
+    $("btn-refresh").addEventListener("click", refresh);
+    $("q").addEventListener("keydown", (e) => { if (e.key === "Enter") refresh(); });
+    $("sort").addEventListener("change", refresh);
+    $("limit").addEventListener("change", refresh);
+    $("company").addEventListener("change", refresh);
+    $("source").addEventListener("change", refresh);
+    $("jobs-table").addEventListener("click", (event) => {
+      const target = event.target;
+      if (!(target instanceof HTMLButtonElement)) return;
+      const fingerprint = target.dataset.fingerprint || "";
+      const nextStatus = target.dataset.status || "";
+      if (nextStatus !== "applied" && nextStatus !== "not_applied") return;
+      void updateApplicationStatus(fingerprint, nextStatus);
+    });
+
+    refresh();
+    setInterval(refresh, 20000);
+  </script>
+</body>
+</html>

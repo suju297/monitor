@@ -1,0 +1,86 @@
+[
+  {
+    "id": "anthropic_greenhouse",
+    "company_name": "Anthropic",
+    "allowed_plan": ["greenhouse", "ashby", "generic"],
+    "notes": "Greenhouse ATS board versus another ATS guess and generic HTML fallback."
+  },
+  {
+    "id": "openai_ashby",
+    "company_name": "OpenAI",
+    "allowed_plan": ["ashby", "greenhouse", "generic"],
+    "notes": "Ashby ATS board versus another ATS guess and generic HTML fallback."
+  },
+  {
+    "id": "palantir_lever",
+    "company_name": "Palantir",
+    "allowed_plan": ["lever", "greenhouse", "generic"],
+    "notes": "Lever board versus another ATS guess and generic HTML fallback."
+  },
+  {
+    "id": "adobe_phenom",
+    "company_name": "Adobe",
+    "allowed_plan": ["phenom", "generic", "greenhouse"],
+    "notes": "Phenom-hosted board versus generic fallback."
+  },
+  {
+    "id": "apple_native",
+    "company_name": "Apple",
+    "allowed_plan": ["apple", "generic", "greenhouse"],
+    "notes": "Native Apple adapter versus generic fallback."
+  },
+  {
+    "id": "amazon_native",
+    "company_name": "Amazon",
+    "allowed_plan": ["amazon", "generic", "greenhouse"],
+    "notes": "Native Amazon adapter versus generic fallback."
+  },
+  {
+    "id": "capitalone_native",
+    "company_name": "Capital One",
+    "allowed_plan": ["capitalone", "generic", "greenhouse"],
+    "notes": "Native Capital One adapter versus generic fallback."
+  },
+  {
+    "id": "datadog_native",
+    "company_name": "Datadog",
+    "allowed_plan": ["datadog", "generic", "greenhouse"],
+    "notes": "Native Datadog Typesense adapter versus generic fallback."
+  },
+  {
+    "id": "google_native",
+    "company_name": "Google",
+    "allowed_plan": ["google", "generic", "greenhouse"],
+    "notes": "Native Google adapter versus generic fallback."
+  },
+  {
+    "id": "microsoft_native",
+    "company_name": "Microsoft",
+    "allowed_plan": ["microsoft", "generic", "greenhouse"],
+    "notes": "Native Microsoft adapter versus generic fallback."
+  },
+  {
+    "id": "atlassian_native",
+    "company_name": "Atlassian",
+    "allowed_plan": ["atlassian", "generic", "greenhouse"],
+    "notes": "Native Atlassian adapter versus generic fallback."
+  },
+  {
+    "id": "oracle_template",
+    "company_name": "Oracle",
+    "allowed_plan": ["template", "generic", "greenhouse"],
+    "notes": "Template API adapter versus generic fallback."
+  },
+  {
+    "id": "veeva_native",
+    "company_name": "Veeva Systems",
+    "allowed_plan": ["veeva", "lever", "generic"],
+    "notes": "Native Veeva feed versus Lever-style fallback and generic fallback."
+  },
+  {
+    "id": "meta_command",
+    "company_name": "Meta",
+    "allowed_plan": ["command", "generic", "greenhouse"],
+    "notes": "Browser-driven command adapter versus generic fallback."
+  }
+]

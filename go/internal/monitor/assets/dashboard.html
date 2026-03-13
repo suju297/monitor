@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Career Monitor Dashboard</title>
+  <style>
+    :root {
+      --bg: #f7f8f4;
+      --panel: #ffffff;
+      --text: #1d2428;
+      --muted: #5d6770;
+      --line: #d8ddde;
+      --accent: #0f766e;
+      --accent-2: #b45309;
+      --ok: #15803d;
+      --blocked: #b91c1c;
+      --error: #9a3412;
+      --unknown: #475569;
+      --shadow: 0 18px 45px rgba(22, 28, 45, 0.08);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 12% -15%, #b6efe7 0%, transparent 42%),
+        radial-gradient(circle at 88% -12%, #ffe0b8 0%, transparent 38%),
+        var(--bg);
+    }
+    .wrap {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 22px 18px 30px;
+      animation: rise 300ms ease-out;
+    }
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+    h1 { margin: 0; font-size: clamp(1.2rem, 3vw, 1.8rem); letter-spacing: 0.2px; }
+    .sub { color: var(--muted); font-size: 0.92rem; margin-top: 3px; }
+    .controls { display: flex; gap: 8px; flex-wrap: wrap; }
+    button, .link-btn {
+      border: 0;
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.15s ease, filter 0.2s ease;
+    }
+    .link-btn { display: inline-flex; align-items: center; text-decoration: none; }
+    button:hover, .link-btn:hover { transform: translateY(-1px); filter: brightness(0.98); }
+    .btn-main { background: var(--accent); color: #fff; }
+    .btn-warn { background: var(--accent-2); color: #fff; }
+    .btn-ghost { background: #eef2f2; color: #20292c; }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 12px;
+      box-shadow: var(--shadow);
+    }
+    .k { color: var(--muted); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.7px; }
+    .v { font-size: 1.38rem; font-weight: 700; margin-top: 4px; }
+    .grid {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr;
+      gap: 12px;
+    }
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .panel h2 {
+      margin: 0;
+      padding: 11px 12px;
+      border-bottom: 1px solid var(--line);
+      font-size: 1rem;
+      background: linear-gradient(90deg, rgba(15,118,110,0.08), rgba(180,83,9,0.06));
+    }
+    .table-wrap { max-height: 540px; overflow: auto; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+    th, td { border-bottom: 1px solid #e9eeef; padding: 8px 10px; vertical-align: top; }
+    th { position: sticky; top: 0; background: #f3f7f6; text-align: left; z-index: 2; }
+    .pill {
+      display: inline-block;
+      font-size: 0.72rem;
+      border-radius: 999px;
+      padding: 2px 8px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+    }
+    .ok { background: #dff3e5; color: var(--ok); }
+    .blocked { background: #ffe1df; color: var(--blocked); }
+    .error { background: #ffe8df; color: var(--error); }
+    .unknown { background: #e8eef4; color: var(--unknown); }
+    .list { max-height: 260px; overflow: auto; padding: 8px 10px; }
+    .item { padding: 8px 0; border-bottom: 1px solid #edf1f2; }
+    .item:last-child { border-bottom: 0; }
+    .muted { color: var(--muted); font-size: 0.84rem; }
+    .code {
+      white-space: pre-wrap;
+      max-height: 220px;
+      overflow: auto;
+      margin: 0;
+      padding: 10px;
+      border-top: 1px solid var(--line);
+      background: #11161b;
+      color: #d4e1e8;
+      font-family: "IBM Plex Mono", "SFMono-Regular", monospace;
+      font-size: 0.78rem;
+    }
+    .split { display: grid; grid-template-columns: 1fr; gap: 12px; }
+    @media (max-width: 1020px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="hero">
+      <div>
+        <h1>Career Monitor Dashboard</h1>
+        <div class="sub" id="meta">Loading...</div>
+      </div>
+      <div class="controls">
+        <button class="btn-main" id="btn-run">Run Monitor</button>
+        <button class="btn-warn" id="btn-dry">Dry Run</button>
+        <button class="btn-ghost" id="btn-refresh">Refresh</button>
+        <a class="link-btn btn-ghost" href="/jobs">Jobs Dashboard</a>
+      </div>
+    </div>
+
+    <div class="cards" id="cards"></div>
+
+    <div class="grid">
+      <div class="panel">
+        <h2>Company Status</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Company</th>
+                <th>Status</th>
+                <th>Source</th>
+                <th>Seen</th>
+                <th>Blocked</th>
+                <th>Updated</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody id="company-table"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="split">
+        <div class="panel">
+          <h2>Blocked Events</h2>
+          <div class="list" id="blocked-list"></div>
+        </div>
+        <div class="panel">
+          <h2>Latest Jobs (Newest First)</h2>
+          <div class="list" id="new-jobs-list"></div>
+        </div>
+        <div class="panel">
+          <h2>Run Output</h2>
+          <div class="list">
+            <div class="item"><b>Status:</b> <span id="run-status">-</span></div>
+            <div class="item"><b>Last Mode:</b> <span id="run-mode">-</span></div>
+            <div class="item"><b>Last Exit:</b> <span id="run-exit">-</span></div>
+            <div class="item"><b>Last Start:</b> <span id="run-start">-</span></div>
+            <div class="item"><b>Last End:</b> <span id="run-end">-</span></div>
+          </div>
+          <pre class="code" id="run-log"></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const $ = (id) => document.getElementById(id);
+    const esc = (v) => String(v ?? "").replace(/[&<>\"']/g, (c) => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '\"':"&quot;", "'":"&#039;" }[c]));
+    const pill = (status) => `<span class="pill ${esc(status)}">${esc(status)}</span>`;
+
+    function renderCards(summary) {
+      const cards = [
+        ["Companies", summary.companies_total ?? 0],
+        ["Active Jobs", summary.total_seen_jobs ?? 0],
+        ["New (Last Report)", summary.new_jobs_last_report ?? 0],
+        ["Blocked (Last Report)", summary.blocked_last_report ?? 0],
+        ["OK", summary.status_counts?.ok ?? 0],
+        ["Blocked", summary.status_counts?.blocked ?? 0],
+        ["Errors", summary.status_counts?.error ?? 0],
+        ["Unknown", summary.status_counts?.unknown ?? 0],
+      ];
+      $("cards").innerHTML = cards.map(([k,v]) => `<div class="card"><div class="k">${esc(k)}</div><div class="v">${esc(v)}</div></div>`).join("");
+    }
+
+    function renderCompanies(companies) {
+      $("company-table").innerHTML = companies.map((c) => `
+        <tr>
+          <td>${esc(c.name)}</td>
+          <td>${pill(c.status)}</td>
+          <td>${esc(c.selected_source || "-")}</td>
+          <td>${esc(c.seen_jobs || 0)}</td>
+          <td>${esc(c.blocked_events || 0)}</td>
+          <td>${esc(c.updated_at_local || "-")}</td>
+          <td class="muted">${esc(c.message || "").slice(0, 140)}</td>
+        </tr>
+      `).join("");
+    }
+
+    function renderBlocked(items) {
+      if (!items.length) {
+        $("blocked-list").innerHTML = `<div class="muted">No blocked events recorded.</div>`;
+        return;
+      }
+      $("blocked-list").innerHTML = items.map((i) => `
+        <div class="item">
+          <div><b>${esc(i.company)}</b> <span class="muted">(${esc(i.at_local || "-")})</span></div>
+          <div class="muted">${esc((i.attempted_sources || []).join(" -> "))}</div>
+          <div>${esc(i.message || "")}</div>
+        </div>
+      `).join("");
+    }
+
+    function renderNewJobs(items) {
+      if (!items.length) {
+        $("new-jobs-list").innerHTML = `<div class="muted">No jobs recorded yet.</div>`;
+        return;
+      }
+      $("new-jobs-list").innerHTML = items.slice(0, 80).map((j) => `
+        <div class="item">
+          <div><b>${esc(j.company || "-")}</b> <span class="muted">(${esc(j.first_seen_local || "-")})</span></div>
+          <div><a href="${esc(j.url || "#")}" target="_blank" rel="noopener noreferrer"><b>${esc(j.title || j.url || "-")}</b></a></div>
+          <div class="muted">${esc(j.url || "")}</div>
+        </div>
+      `).join("");
+    }
+
+    function renderRunner(r) {
+      $("run-status").textContent = r.running ? "Running" : "Idle";
+      $("run-mode").textContent = r.last_mode || "-";
+      $("run-exit").textContent = r.last_exit_code ?? "-";
+      $("run-start").textContent = r.last_start || "-";
+      $("run-end").textContent = r.last_end || "-";
+      const log = [r.last_stderr || "", r.last_stdout || "", r.last_error || ""].filter(Boolean).join("\\n\\n");
+      $("run-log").textContent = log || "No run output yet.";
+    }
+
+    async function fetchOverview() {
+      const res = await fetch("/api/overview", { cache: "no-store" });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      return res.json();
+    }
+
+    async function refresh() {
+      try {
+        const data = await fetchOverview();
+        const summary = data.summary || {};
+        renderCards(summary);
+        renderCompanies(data.companies || []);
+        renderBlocked(data.blocked_recent || []);
+        renderNewJobs(data.new_jobs || []);
+        renderRunner(data.runner || {});
+        $("meta").textContent = `Last run: ${summary.last_run_local || "-"} | Generated: ${summary.generated_at || "-"}`;
+      } catch (err) {
+        $("meta").textContent = `Dashboard fetch error: ${String(err)}`;
+      }
+    }
+
+    async function triggerRun(dryRun) {
+      const res = await fetch("/api/run", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ dry_run: !!dryRun }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        alert(data.message || "Run trigger failed");
+        return;
+      }
+      await refresh();
+    }
+
+    $("btn-refresh").addEventListener("click", () => refresh());
+    $("btn-run").addEventListener("click", () => triggerRun(false));
+    $("btn-dry").addEventListener("click", () => triggerRun(true));
+
+    refresh();
+    setInterval(refresh, 15000);
+  </script>
+</body>
+</html>
