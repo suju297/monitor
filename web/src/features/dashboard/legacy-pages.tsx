@@ -34,6 +34,7 @@ import {
   FieldGroup,
   InlineAlert,
   MetricCard,
+  ModalShell,
   NativeInput,
   NativeSelect,
   ProgressBar,
@@ -42,7 +43,9 @@ import {
   SurfaceCardDescription,
   SurfaceCardHeader,
   SurfaceCardTitle,
+  TableShell,
 } from '@/components/dashboard'
+import { pillClass, subtleTextClass } from '@/components/dashboard-styles'
 import { cn } from '@/lib/utils'
 
 type MonitorState = {
@@ -80,31 +83,27 @@ type AssistantRunButtonState = 'queued' | 'running' | 'completed' | 'failed'
 
 type AssistantBadgeTone = 'done' | 'queued' | 'running' | 'unknown' | 'blocked'
 
-function pillBaseClass() {
-  return 'inline-flex items-center rounded-full border px-2.5 py-0.5 text-[11px] font-medium'
-}
-
 function statusClass(status: string): string {
   switch ((status || '').toLowerCase()) {
     case 'ok':
-      return `${pillBaseClass()} border-emerald-200 bg-emerald-50 text-emerald-700`
+      return pillClass('emerald')
     case 'blocked':
-      return `${pillBaseClass()} border-amber-200 bg-amber-50 text-amber-700`
+      return pillClass('amber')
     case 'error':
-      return `${pillBaseClass()} border-rose-200 bg-rose-50 text-rose-700`
+      return pillClass('rose')
     default:
-      return `${pillBaseClass()} border-slate-200 bg-slate-100 text-slate-600`
+      return pillClass('slate')
   }
 }
 
 function phaseClass(phase: string): string {
   switch ((phase || '').toLowerCase()) {
     case 'running':
-      return `${pillBaseClass()} border-blue-200 bg-blue-50 text-blue-700`
+      return pillClass('blue')
     case 'done':
-      return `${pillBaseClass()} border-emerald-200 bg-emerald-50 text-emerald-700`
+      return pillClass('emerald')
     default:
-      return `${pillBaseClass()} border-amber-200 bg-amber-50 text-amber-700`
+      return pillClass('amber')
   }
 }
 
@@ -182,15 +181,15 @@ function assistantBadge(job: JobRow): { label: string; tone: AssistantBadgeTone;
 function assistantBadgeClass(tone: AssistantBadgeTone): string {
   switch (tone) {
     case 'done':
-      return `${pillBaseClass()} border-emerald-200 bg-emerald-50 text-emerald-700`
+      return pillClass('emerald')
     case 'queued':
-      return `${pillBaseClass()} border-amber-200 bg-amber-50 text-amber-700`
+      return pillClass('amber')
     case 'running':
-      return `${pillBaseClass()} border-blue-200 bg-blue-50 text-blue-700`
+      return pillClass('blue')
     case 'blocked':
-      return `${pillBaseClass()} border-rose-200 bg-rose-50 text-rose-700`
+      return pillClass('rose')
     default:
-      return `${pillBaseClass()} border-slate-200 bg-slate-100 text-slate-600`
+      return pillClass('slate')
   }
 }
 
@@ -348,10 +347,6 @@ function sortableHeaderButtonClass(active: boolean): string {
   )
 }
 
-function subtleTableCellClass(): string {
-  return 'text-[13px] leading-5 text-slate-500'
-}
-
 function inlineActionButtonClass(state?: string): string {
   switch ((state || '').trim().toLowerCase()) {
     case 'running':
@@ -384,11 +379,11 @@ function applicationStatusButtonClass(active: boolean, tone: 'applied' | 'not_ap
 function eligibilityBadgeClass(status: string): string {
   switch ((status || '').trim().toLowerCase()) {
     case 'friendly':
-      return `${pillBaseClass()} border-emerald-200 bg-emerald-50 text-emerald-700`
+      return pillClass('emerald')
     case 'blocked':
-      return `${pillBaseClass()} border-rose-200 bg-rose-50 text-rose-700`
+      return pillClass('rose')
     default:
-      return `${pillBaseClass()} border-amber-200 bg-amber-50 text-amber-700`
+      return pillClass('amber')
   }
 }
 
@@ -712,7 +707,7 @@ export function MonitorPage() {
       {
         id: 'notes',
         header: 'Notes',
-        cell: ({ row }) => <span className={cn(subtleTableCellClass(), 'line-clamp-3 block max-w-sm')}>{(row.original.message || '').slice(0, 180) || '-'}</span>,
+        cell: ({ row }) => <span className={cn(subtleTextClass(), 'line-clamp-3 block max-w-sm')}>{(row.original.message || '').slice(0, 180) || '-'}</span>,
       },
     ],
     [monitorSort.direction, monitorSort.key, toggleMonitorSort],
@@ -1063,66 +1058,59 @@ export function MonitorPage() {
         </SurfaceCardContent>
       </SurfaceCard>
 
-      {showHistory ? (
-        <div
-          className="fixed inset-0 z-50 flex items-start justify-center bg-slate-950/50 px-4 py-8 backdrop-blur-sm"
-          onClick={() => setShowHistory(false)}
-          role="dialog"
-          aria-modal="true"
-          aria-label="Persisted company status history"
-        >
-          <SurfaceCard className="max-h-[90vh] w-full max-w-6xl overflow-hidden" onClick={(event) => event.stopPropagation()}>
-            <SurfaceCardHeader className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
-              <div>
-                <SurfaceCardTitle>Persisted Company History</SurfaceCardTitle>
-                <SurfaceCardDescription>Last known status, source, and notes stored for each company target.</SurfaceCardDescription>
-              </div>
-              <Button variant="outline" className="rounded-full" onClick={() => setShowHistory(false)}>
-                Close
-              </Button>
-            </SurfaceCardHeader>
-            <SurfaceCardContent className="overflow-hidden">
-              <div className="overflow-x-auto">
-                <table className="min-w-full text-left text-sm">
-                  <thead className="bg-slate-50/80">
-                    <tr>
-                      <th className="px-3 py-2.5 font-medium text-slate-500">Company</th>
-                      <th className="px-3 py-2.5 font-medium text-slate-500">Status</th>
-                      <th className="px-3 py-2.5 font-medium text-slate-500">Source</th>
-                      <th className="px-3 py-2.5 font-medium text-slate-500">Seen</th>
-                      <th className="px-3 py-2.5 font-medium text-slate-500">Blocked</th>
-                      <th className="px-3 py-2.5 font-medium text-slate-500">Updated</th>
-                      <th className="px-3 py-2.5 font-medium text-slate-500">Notes</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-slate-100">
-                    {companies.map((company) => (
-                      <tr key={company.name} className="bg-white/70">
-                        <td className="px-3 py-3 font-medium text-slate-900">{company.name}</td>
-                        <td className="px-3 py-3">
-                          <span className={statusClass(company.status)}>{company.status}</span>
-                        </td>
-                        <td className="px-3 py-3 text-slate-600">{company.selected_source || '-'}</td>
-                        <td className="px-3 py-3 text-slate-600">{company.seen_jobs}</td>
-                        <td className="px-3 py-3 text-slate-600">{company.blocked_events}</td>
-                        <td className="px-3 py-3 text-slate-600">{company.updated_at_local || '-'}</td>
-                        <td className="px-3 py-3 text-sm leading-5 text-slate-500">{(company.message || '').slice(0, 140)}</td>
-                      </tr>
-                    ))}
-                    {!companies.length ? (
-                      <tr>
-                        <td colSpan={7} className="px-3 py-8 text-center text-slate-500">
-                          {state.loading ? 'Loading...' : 'No company data yet.'}
-                        </td>
-                      </tr>
-                    ) : null}
-                  </tbody>
-                </table>
-              </div>
-            </SurfaceCardContent>
-          </SurfaceCard>
-        </div>
-      ) : null}
+      <ModalShell
+        open={showHistory}
+        onClose={() => setShowHistory(false)}
+        title="Persisted Company History"
+        description="Last known status, source, and notes stored for each company target."
+        maxWidthClassName="max-w-6xl"
+        align="top"
+        ariaLabel="Persisted company status history"
+        headerAction={
+          <Button variant="outline" className="rounded-full" onClick={() => setShowHistory(false)}>
+            Close
+          </Button>
+        }
+        contentClassName="overflow-hidden"
+      >
+        <TableShell viewportClassName="overflow-x-auto">
+          <table className="min-w-full text-left text-sm">
+            <thead className="bg-slate-50/80">
+              <tr>
+                <th className="px-3 py-2.5 font-medium text-slate-500">Company</th>
+                <th className="px-3 py-2.5 font-medium text-slate-500">Status</th>
+                <th className="px-3 py-2.5 font-medium text-slate-500">Source</th>
+                <th className="px-3 py-2.5 font-medium text-slate-500">Seen</th>
+                <th className="px-3 py-2.5 font-medium text-slate-500">Blocked</th>
+                <th className="px-3 py-2.5 font-medium text-slate-500">Updated</th>
+                <th className="px-3 py-2.5 font-medium text-slate-500">Notes</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-100">
+              {companies.map((company) => (
+                <tr key={company.name} className="bg-white/70">
+                  <td className="px-3 py-3 font-medium text-slate-900">{company.name}</td>
+                  <td className="px-3 py-3">
+                    <span className={statusClass(company.status)}>{company.status}</span>
+                  </td>
+                  <td className="px-3 py-3 text-slate-600">{company.selected_source || '-'}</td>
+                  <td className="px-3 py-3 text-slate-600">{company.seen_jobs}</td>
+                  <td className="px-3 py-3 text-slate-600">{company.blocked_events}</td>
+                  <td className="px-3 py-3 text-slate-600">{company.updated_at_local || '-'}</td>
+                  <td className="px-3 py-3 text-sm leading-5 text-slate-500">{(company.message || '').slice(0, 140)}</td>
+                </tr>
+              ))}
+              {!companies.length ? (
+                <tr>
+                  <td colSpan={7} className="px-3 py-8 text-center text-slate-500">
+                    {state.loading ? 'Loading...' : 'No company data yet.'}
+                  </td>
+                </tr>
+              ) : null}
+            </tbody>
+          </table>
+        </TableShell>
+      </ModalShell>
     </DashboardPage>
   )
 }
@@ -1644,7 +1632,7 @@ export function JobsPage() {
           return (
             <div className="space-y-1.5">
               <div className={eligibilityBadgeClass(workAuthStatus)}>{workAuthLabel}</div>
-              {notes.length ? <div className={subtleTableCellClass()}>{notes.slice(0, 2).join(' · ')}</div> : null}
+              {notes.length ? <div className={subtleTextClass()}>{notes.slice(0, 2).join(' · ')}</div> : null}
             </div>
           )
         },
@@ -1713,7 +1701,7 @@ export function JobsPage() {
                   Not Applied
                 </button>
               </div>
-              <div className={subtleTableCellClass()}>
+              <div className={subtleTextClass()}>
                 {isPending ? 'Saving...' : updatedAt ? `Saved ${formatTimestamp(updatedAt)}` : 'Not set'}
               </div>
             </div>
@@ -1987,8 +1975,7 @@ export function JobsPage() {
 
       <SurfaceCard className="flex min-h-0 flex-1 flex-col overflow-hidden rounded-[18px]">
         <SurfaceCardContent className="flex min-h-0 flex-1 flex-col space-y-0 px-2 py-2">
-          <div className="min-h-0 flex-1 overflow-hidden rounded-[16px] border border-slate-200/80">
-            <div className="h-full overflow-auto">
+          <TableShell className="min-h-0 flex-1 rounded-[16px]" viewportClassName="h-full">
               <table className="min-w-full text-left text-sm">
                 <thead className="sticky top-0 z-10 bg-slate-50/95 backdrop-blur">
                   {jobsTable.getHeaderGroups().map((headerGroup) => (
@@ -2026,8 +2013,7 @@ export function JobsPage() {
                   ) : null}
                 </tbody>
               </table>
-            </div>
-          </div>
+          </TableShell>
         </SurfaceCardContent>
       </SurfaceCard>
     </DashboardPage>

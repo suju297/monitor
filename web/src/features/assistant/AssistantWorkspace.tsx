@@ -47,17 +47,15 @@ import {
   SurfaceCardHeader,
   SurfaceCardTitle,
   TabButton,
+  TableShell,
 } from '@/components/dashboard'
+import { pillClass, subtleTextClass } from '@/components/dashboard-styles'
 import { cn } from '@/lib/utils'
 
 type Loadable<T> = {
   loading: boolean
   error: string
   data: T | null
-}
-
-function pillBaseClass() {
-  return 'inline-flex items-center rounded-full border px-2.5 py-0.5 text-[11px] font-medium'
 }
 
 function formatTimestamp(value?: string | null): string {
@@ -90,19 +88,19 @@ function blockersFromRun(run: AssistantRunStatusResponse | null): string[] {
 function queuePillClass(status: string): string {
   switch ((status || '').trim().toLowerCase()) {
     case 'completed':
-      return `${pillBaseClass()} border-emerald-200 bg-emerald-50 text-emerald-700`
+      return pillClass('emerald')
     case 'running':
-      return `${pillBaseClass()} border-blue-200 bg-blue-50 text-blue-700`
+      return pillClass('blue')
     case 'failed':
-      return `${pillBaseClass()} border-rose-200 bg-rose-50 text-rose-700`
+      return pillClass('rose')
     case 'review':
-      return `${pillBaseClass()} border-amber-200 bg-amber-50 text-amber-700`
+      return pillClass('amber')
     case 'ready':
-      return `${pillBaseClass()} border-teal-200 bg-teal-50 text-teal-700`
+      return pillClass('teal')
     case 'queued':
-      return `${pillBaseClass()} border-amber-200 bg-amber-50 text-amber-700`
+      return pillClass('amber')
     default:
-      return `${pillBaseClass()} border-slate-200 bg-slate-100 text-slate-600`
+      return pillClass('slate')
   }
 }
 
@@ -119,22 +117,18 @@ function tableButtonClass(): string {
   return 'inline-flex items-center rounded-full border border-slate-200 bg-white px-2.5 py-1.5 text-[13px] font-medium text-slate-700 transition hover:bg-slate-50'
 }
 
-function subtleCopyClass(): string {
-  return 'text-[13px] leading-5 text-slate-500'
-}
-
 function learningToneClass(tab: 'summary' | 'overrides' | 'defaults' | 'accepted' | 'candidates'): string {
   switch (tab) {
     case 'overrides':
-      return `${pillBaseClass()} border-amber-200 bg-amber-50 text-amber-700`
+      return pillClass('amber')
     case 'accepted':
-      return `${pillBaseClass()} border-teal-200 bg-teal-50 text-teal-700`
+      return pillClass('teal')
     case 'defaults':
-      return `${pillBaseClass()} border-emerald-200 bg-emerald-50 text-emerald-700`
+      return pillClass('emerald')
     case 'candidates':
-      return `${pillBaseClass()} border-blue-200 bg-blue-50 text-blue-700`
+      return pillClass('blue')
     default:
-      return `${pillBaseClass()} border-slate-200 bg-slate-100 text-slate-600`
+      return pillClass('slate')
   }
 }
 
@@ -821,7 +815,7 @@ export default function AssistantPage() {
                     <div className="mb-4 flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
                       <div>
                         <div className="text-lg font-semibold text-slate-950">Recommendation</div>
-                        <div className={subtleCopyClass()}>Resume choice, decision buckets, and review posture for the currently selected job.</div>
+                        <div className={subtleTextClass()}>Resume choice, decision buckets, and review posture for the currently selected job.</div>
                       </div>
                       <Badge
                         variant="outline"
@@ -884,7 +878,7 @@ export default function AssistantPage() {
                     <div className="mb-4 flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
                       <div>
                         <div className="text-lg font-semibold text-slate-950">Live Run</div>
-                        <div className={subtleCopyClass()}>Run-level timing, resume lock state, submit posture, and any blockers captured during execution.</div>
+                        <div className={subtleTextClass()}>Run-level timing, resume lock state, submit posture, and any blockers captured during execution.</div>
                       </div>
                       <div className={queuePillClass(run.status)}>{run.status}</div>
                     </div>
@@ -941,12 +935,12 @@ export default function AssistantPage() {
                       {currentReviewQueue.map((item, index) => (
                         <div key={`${String(item.question_label || index)}-${index}`} className="rounded-2xl border border-white/70 bg-white/80 px-4 py-4">
                           <div className="mb-2 flex flex-wrap items-center gap-2">
-                            <span className={String(item.status || '') === 'answered' ? `${pillBaseClass()} border-emerald-200 bg-emerald-50 text-emerald-700` : `${pillBaseClass()} border-amber-200 bg-amber-50 text-amber-700`}>
+                            <span className={String(item.status || '') === 'answered' ? pillClass('emerald') : pillClass('amber')}>
                               {String(item.status || '-')}
                             </span>
                             <b className="text-slate-900">{String(item.question_label || '-')}</b>
                           </div>
-                          <div className={subtleCopyClass()}>{String(item.reason || '-')}</div>
+                          <div className={subtleTextClass()}>{String(item.reason || '-')}</div>
                         </div>
                       ))}
                     </div>
@@ -968,18 +962,14 @@ export default function AssistantPage() {
                             <div className="flex flex-wrap items-center gap-2">
                               <span
                                 className={
-                                  item.result_summary.submitted
-                                    ? `${pillBaseClass()} border-emerald-200 bg-emerald-50 text-emerald-700`
-                                    : item.result_summary.review_queue_count
-                                      ? `${pillBaseClass()} border-amber-200 bg-amber-50 text-amber-700`
-                                      : `${pillBaseClass()} border-slate-200 bg-slate-100 text-slate-600`
+                                  item.result_summary.submitted ? pillClass('emerald') : item.result_summary.review_queue_count ? pillClass('amber') : pillClass('slate')
                                 }
                               >
                                 {item.result_summary.submitted ? 'Submitted' : item.result_summary.review_queue_count ? 'Review' : 'Observed'}
                               </span>
                               <b className="text-slate-900">{formatTimestamp(item.captured_at)}</b>
                             </div>
-                            <div className={subtleCopyClass()}>
+                            <div className={subtleTextClass()}>
                               filled {item.result_summary.filled_count} · review {item.result_summary.review_queue_count}
                             </div>
                           </button>
@@ -998,12 +988,12 @@ export default function AssistantPage() {
                             {selectedReviewQueue.slice(0, 4).map((item, index) => (
                               <div key={`${String(item.question_label || index)}-${index}`} className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4">
                                 <div className="mb-2 flex flex-wrap items-center gap-2">
-                                  <span className={String(item.status || '') === 'answered' ? `${pillBaseClass()} border-emerald-200 bg-emerald-50 text-emerald-700` : `${pillBaseClass()} border-amber-200 bg-amber-50 text-amber-700`}>
+                                  <span className={String(item.status || '') === 'answered' ? pillClass('emerald') : pillClass('amber')}>
                                     {String(item.status || '-')}
                                   </span>
                                   <b className="text-slate-900">{String(item.question_label || '-')}</b>
                                 </div>
-                                <div className={subtleCopyClass()}>{String(item.reason || '-')}</div>
+                                <div className={subtleTextClass()}>{String(item.reason || '-')}</div>
                               </div>
                             ))}
                           </div>
@@ -1041,8 +1031,7 @@ export default function AssistantPage() {
             {workspaceTab === 'runs' ? (
               <>
                 {runsState.error ? <InlineAlert>{runsState.error}</InlineAlert> : null}
-                <div className="overflow-hidden rounded-[22px] border border-slate-200/80">
-                  <div className="overflow-x-auto">
+                <TableShell viewportClassName="overflow-x-auto">
                     <table className="min-w-full text-left text-sm">
                       <thead className="bg-slate-50/80">
                         <tr>
@@ -1092,8 +1081,7 @@ export default function AssistantPage() {
                         ) : null}
                       </tbody>
                     </table>
-                  </div>
-                </div>
+                </TableShell>
               </>
             ) : null}
 
@@ -1132,7 +1120,7 @@ export default function AssistantPage() {
                               <span className={queuePillClass(item.status)}>{item.status}</span>
                               <b className="text-slate-900">{item.company_name || '-'}</b>
                             </div>
-                            <div className={subtleCopyClass()}>
+                            <div className={subtleTextClass()}>
                               {item.job_title || '-'} · {formatTimestamp(item.updated_at || item.added_at || undefined)}
                               {item.review_pending_count ? ` · review ${item.review_pending_count}` : ''}
                             </div>
@@ -1201,10 +1189,10 @@ export default function AssistantPage() {
                           }}
                         >
                           <div className="flex flex-wrap items-center gap-2">
-                            <span className={`${pillBaseClass()} border-amber-200 bg-amber-50 text-amber-700`}>Candidate</span>
+                            <span className={pillClass('amber')}>Candidate</span>
                             <b className="text-slate-900">{item.company_name || '-'}</b>
                           </div>
-                          <div className={subtleCopyClass()}>
+                          <div className={subtleTextClass()}>
                             {item.job_title || '-'} · first seen {formatTimestamp(item.first_seen || item.posted_at || undefined)}
                           </div>
                         </button>
@@ -1305,7 +1293,7 @@ export default function AssistantPage() {
                       </span>
                       <b className="text-slate-900">{item.question_label}</b>
                     </div>
-                    <div className={subtleCopyClass()}>
+                    <div className={subtleTextClass()}>
                       {learningTab === 'overrides'
                         ? `Top final answer: ${item.top_final_answers[0]?.value || '-'} · acceptance ${formatRate(item.acceptance_rate)} · ${item.company_samples.join(', ') || 'No company sample'}`
                         : learningTab === 'accepted'

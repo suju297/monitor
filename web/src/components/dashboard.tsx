@@ -28,6 +28,21 @@ type MetricCardProps = {
   className?: string
 }
 
+type ModalShellProps = {
+  open: boolean
+  title: React.ReactNode
+  description?: React.ReactNode
+  children: React.ReactNode
+  onClose: () => void
+  headerAction?: React.ReactNode
+  className?: string
+  panelClassName?: string
+  contentClassName?: string
+  align?: 'center' | 'top'
+  maxWidthClassName?: string
+  ariaLabel?: string
+}
+
 type FieldGroupProps = React.ComponentProps<'label'> & {
   label: string
   hint?: string
@@ -259,6 +274,66 @@ export function EmptyState({
         <div className="mx-auto max-w-2xl text-sm leading-5 text-slate-500">{description}</div>
         {meta ? <div className="flex flex-wrap items-center justify-center gap-2.5 text-[11px] text-slate-500">{meta}</div> : null}
       </div>
+    </div>
+  )
+}
+
+export function TableShell({
+  className,
+  viewportClassName,
+  children,
+}: React.PropsWithChildren<{
+  className?: string
+  viewportClassName?: string
+}>) {
+  return (
+    <div className={cn('overflow-hidden rounded-[20px] border border-slate-200/80 bg-white/80', className)}>
+      <div className={cn('min-h-0 flex-1 overflow-auto', viewportClassName)}>{children}</div>
+    </div>
+  )
+}
+
+export function ModalShell({
+  open,
+  title,
+  description,
+  children,
+  onClose,
+  headerAction,
+  className,
+  panelClassName,
+  contentClassName,
+  align = 'center',
+  maxWidthClassName = 'max-w-3xl',
+  ariaLabel,
+}: ModalShellProps) {
+  if (!open) return null
+
+  return (
+    <div
+      className={cn(
+        'fixed inset-0 z-50 bg-slate-950/50 backdrop-blur-sm',
+        align === 'top' ? 'flex items-start justify-center px-4 py-8' : 'flex items-end justify-center p-3 sm:items-center sm:p-6',
+        className,
+      )}
+      onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+      aria-label={ariaLabel}
+    >
+      <SurfaceCard
+        className={cn('flex max-h-[90vh] w-full flex-col overflow-hidden bg-white shadow-[0_40px_120px_-42px_rgba(15,23,42,0.5)]', maxWidthClassName, panelClassName)}
+        onClick={(event) => event.stopPropagation()}
+      >
+        <SurfaceCardHeader className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+          <div className="space-y-1">
+            <SurfaceCardTitle>{title}</SurfaceCardTitle>
+            {description ? <SurfaceCardDescription>{description}</SurfaceCardDescription> : null}
+          </div>
+          {headerAction}
+        </SurfaceCardHeader>
+        <SurfaceCardContent className={cn('min-h-0 flex-1 overflow-y-auto', contentClassName)}>{children}</SurfaceCardContent>
+      </SurfaceCard>
     </div>
   )
 }

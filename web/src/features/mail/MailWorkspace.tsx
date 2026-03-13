@@ -27,6 +27,8 @@ import {
   type MailOpenActionItem,
   type MailRunStatusResponse,
 } from '@/api'
+import { EmptyState, ModalShell, TableShell } from '@/components/dashboard'
+import { pillClass } from '@/components/dashboard-styles'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -442,7 +444,7 @@ function CompactMetricTile({
 }
 
 function compactBadgeClass(tone: Tone): string {
-  return cn('rounded-full px-1.5 py-0.5 text-[10px] font-medium leading-none whitespace-nowrap', toneStyles[tone].badge)
+  return pillClass(tone, 'compact', 'rounded-full')
 }
 
 function EventGlyph({ eventType, className }: { eventType?: string; className?: string }) {
@@ -524,8 +526,7 @@ function ScrollableDataTable<TData extends object>({
   const columnCount = Math.max(columns.length, table.getAllLeafColumns().length)
 
   return (
-    <div className="flex h-full min-h-0 flex-col overflow-hidden rounded-[20px] border border-slate-200/80 bg-white/80">
-      <div className={cn('min-h-0 flex-1 overflow-auto', maxHeightClass)}>
+    <TableShell className="flex h-full min-h-0 flex-col" viewportClassName={maxHeightClass}>
         <table className="min-w-full text-left text-[13px] leading-5">
           <thead className="sticky top-0 z-10 bg-slate-50/95 backdrop-blur">
             {table.getHeaderGroups().map((headerGroup) => (
@@ -574,14 +575,13 @@ function ScrollableDataTable<TData extends object>({
             ) : (
               <tr>
                 <td colSpan={columnCount} className="px-4 py-10">
-                  <EmptyPanel title={emptyTitle} description={emptyDescription} />
+                  <EmptyState title={emptyTitle} description={emptyDescription} className="rounded-3xl py-8" />
                 </td>
               </tr>
             )}
           </tbody>
         </table>
-      </div>
-    </div>
+    </TableShell>
   )
 }
 
@@ -598,37 +598,27 @@ function DetailModal({
   onClose: () => void
   children: React.ReactNode
 }) {
-  if (!open) return null
   return (
-    <div className="fixed inset-0 z-50 flex items-end justify-center bg-slate-950/50 p-3 backdrop-blur-sm sm:items-center sm:p-6" onClick={onClose}>
-      <div
-        className="flex max-h-[88vh] w-full max-w-3xl flex-col overflow-hidden rounded-[28px] border border-slate-200 bg-white shadow-[0_40px_120px_-42px_rgba(15,23,42,0.5)]"
-        onClick={(event) => event.stopPropagation()}
-      >
-        <div className="flex items-start justify-between gap-4 border-b border-slate-200 px-5 py-4">
-          <div className="space-y-1">
-            <div className="text-lg font-semibold text-slate-950">{title}</div>
-            {description ? <div className="text-sm leading-6 text-slate-500">{description}</div> : null}
-          </div>
-          <Button type="button" variant="outline" size="sm" onClick={onClose}>
-            Close
-          </Button>
-        </div>
-        <div className="min-h-0 flex-1 overflow-y-auto px-5 py-4">{children}</div>
-      </div>
-    </div>
+    <ModalShell
+      open={open}
+      title={title}
+      description={description}
+      onClose={onClose}
+      panelClassName="max-h-[88vh] rounded-[28px] border-slate-200 bg-white"
+      contentClassName="px-5 py-4"
+      headerAction={
+        <Button type="button" variant="outline" size="sm" onClick={onClose}>
+          Close
+        </Button>
+      }
+    >
+      {children}
+    </ModalShell>
   )
 }
 
 function EmptyPanel({ title, description }: { title: string; description: string }) {
-  return (
-    <div className="rounded-3xl border border-dashed border-slate-200 bg-slate-50/80 px-5 py-8 text-center">
-      <div className="space-y-2">
-        <div className="text-base font-semibold text-slate-900">{title}</div>
-        <div className="text-sm leading-6 text-slate-500">{description}</div>
-      </div>
-    </div>
-  )
+  return <EmptyState title={title} description={description} className="rounded-3xl py-8" />
 }
 
 function previewPaneTitle(kind: LifecyclePreviewKind): string {
