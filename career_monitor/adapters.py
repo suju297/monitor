@@ -23,7 +23,7 @@ from .utils import (
     title_from_url,
 )
 
-MY_GREENHOUSE_DEFAULT_COMMAND = ["uv", "run", "python", "scripts/fetch_my_greenhouse_jobs.py"]
+MY_GREENHOUSE_DEFAULT_COMMAND = ["uv", "run", "python", "-m", "scripts.fetch_my_greenhouse_jobs"]
 
 
 def _run_job_command(

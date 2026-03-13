@@ -11,6 +11,8 @@ from pathlib import Path
 from urllib.error import URLError
 from urllib.request import urlopen
 
+from career_monitor.local_paths import prefer_legacy_or_local, prefer_local_file
+
 
 DEFAULT_BACKEND_HOST = "127.0.0.1"
 DEFAULT_BACKEND_PORT = 8765
@@ -368,7 +370,10 @@ def rewrite_backend_paths(args: list[str]) -> list[str]:
 
         if current in PATH_FLAGS and i + 1 < len(args):
             raw_path = args[i + 1]
-            absolute = Path(raw_path).expanduser()
+            if current == "--config":
+                absolute = prefer_local_file(raw_path, "companies.yaml")
+            else:
+                absolute = Path(raw_path).expanduser()
             if not absolute.is_absolute():
                 absolute = (Path.cwd() / absolute).resolve()
             rewritten.append(current)
@@ -381,7 +386,10 @@ def rewrite_backend_paths(args: list[str]) -> list[str]:
             prefix = flag + "="
             if current.startswith(prefix):
                 raw_path = current[len(prefix) :]
-                absolute = Path(raw_path).expanduser()
+                if flag == "--config":
+                    absolute = prefer_local_file(raw_path, "companies.yaml")
+                else:
+                    absolute = Path(raw_path).expanduser()
                 if not absolute.is_absolute():
                     absolute = (Path.cwd() / absolute).resolve()
                 rewritten_flag = prefix + os.path.relpath(str(absolute), str(GO_DIR))
@@ -390,6 +398,15 @@ def rewrite_backend_paths(args: list[str]) -> list[str]:
         i += 1
 
     return rewritten
+
+
+def resolve_optional_local_or_legacy(raw_path: str, local_name: str, legacy_relative: str) -> Path:
+    candidate = Path(raw_path).expanduser()
+    if candidate.is_absolute():
+        return candidate
+    if candidate.name == local_name:
+        return prefer_legacy_or_local(local_name, legacy_relative)
+    return (SCRIPT_DIR / candidate).resolve()
 
 
 def spawn_backend(args: list[str]) -> subprocess.Popen[bytes]:
@@ -420,10 +437,18 @@ def spawn_observer() -> subprocess.Popen[bytes]:
         "--jobs-db-file",
         ".state/jobs.db",
     ]
-    profile_path = (SCRIPT_DIR / DEFAULT_OBSERVER_PROFILE_FILE).resolve()
+    profile_path = resolve_optional_local_or_legacy(
+        DEFAULT_OBSERVER_PROFILE_FILE,
+        "greenhouse_observer_profile.json",
+        ".state/greenhouse_observer_profile.json",
+    )
     if profile_path.exists():
         cmd.extend(["--profile-file", str(profile_path)])
-    answers_path = (SCRIPT_DIR / DEFAULT_OBSERVER_ANSWERS_FILE).resolve()
+    answers_path = resolve_optional_local_or_legacy(
+        DEFAULT_OBSERVER_ANSWERS_FILE,
+        "greenhouse_observer_answers.json",
+        ".state/greenhouse_observer_answers.json",
+    )
     if answers_path.exists():
         cmd.extend(["--answers-file", str(answers_path)])
     env = child_process_env()

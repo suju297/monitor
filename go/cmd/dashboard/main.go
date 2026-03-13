@@ -59,7 +59,7 @@ func main() {
 
 	cfg := monitor.MonitorRunnerConfig{
 		CWD:            cwd,
-		ConfigPath:     resolveLaunchPath(cwd, *config, true),
+		ConfigPath:     resolveLaunchPath(cwd, monitor.PreferredLocalFile(*config, "companies.yaml"), true),
 		StatePath:      resolveLaunchPath(cwd, *stateFile, false),
 		ReportPath:     resolveLaunchPath(cwd, *reportFile, false),
 		SchedulePath:   resolveLaunchPath(cwd, *scheduleFile, false),

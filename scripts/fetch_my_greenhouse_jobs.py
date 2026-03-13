@@ -12,6 +12,10 @@ from urllib.error import HTTPError, URLError
 from urllib.parse import parse_qs, urljoin, urlparse
 from urllib.request import Request, urlopen
 
+# Allow direct script execution from a fresh checkout as well as `python -m`.
+if __package__ in {None, ""}:
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
 from career_monitor.local_paths import prefer_legacy_or_local
 
 BLOCKED_TITLE_MARKERS = (

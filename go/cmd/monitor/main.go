@@ -27,7 +27,7 @@ func main() {
 	}
 
 	opts := monitor.RunOptions{
-		ConfigPath:     *config,
+		ConfigPath:     monitor.PreferredLocalFile(*config, "companies.yaml"),
 		StatePath:      *stateFile,
 		ReportPath:     *reportFile,
 		DotenvPath:     *dotenv,

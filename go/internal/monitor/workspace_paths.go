@@ -104,3 +104,11 @@ func preferredLegacyOrLocal(localName string, legacyRelative string) string {
 	}
 	return localCandidate
 }
+
+func PreferredLocalFile(raw string, localName string) string {
+	return preferredLocalFile(raw, localName)
+}
+
+func PreferredLegacyOrLocal(localName string, legacyRelative string) string {
+	return preferredLegacyOrLocal(localName, legacyRelative)
+}

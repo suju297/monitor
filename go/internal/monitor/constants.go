@@ -51,4 +51,4 @@ var BlockedTitleMarkers = []string{
 	"captcha",
 }
 
-var MyGreenhouseDefaultCommand = []string{"uv", "run", "python", "scripts/fetch_my_greenhouse_jobs.py"}
+var MyGreenhouseDefaultCommand = []string{"uv", "run", "python", "-m", "scripts.fetch_my_greenhouse_jobs"}

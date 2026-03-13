@@ -12,6 +12,7 @@ This version runs on a Go core runtime with:
 - optional SLM source-plan routing (local Ollama)
 
 `tracker.py` and `dashboard.py` now delegate to the Go runtime.
+The old Python monitor/dashboard implementations are kept under `career_monitor/legacy/` as compatibility-only entrypoints.
 
 ## Setup
 ```bash
@@ -509,7 +510,7 @@ Optional env:
 - `AMD_QUERY` (optional keyword filter; multi-word query uses broad OR matching)
 
 ### `my_greenhouse`
-Uses Playwright script: `scripts/fetch_my_greenhouse_jobs.py`.
+Uses Playwright module: `python -m scripts.fetch_my_greenhouse_jobs`.
 Required env:
 - `GREENHOUSE_EMAIL`
 - `GREENHOUSE_PASSWORD`
@@ -529,6 +530,9 @@ Optional env:
   - `go/cmd/monitor/main.go`
   - `go/cmd/dashboard/main.go`
   - `go/internal/monitor/*.go`
+- Legacy Python compatibility runtime:
+  - `career_monitor/legacy/cli.py`
+  - `career_monitor/legacy/dashboard.py`
 - Playwright adapters:
   - `scripts/fetch_jobs_playwright.py`
   - `scripts/fetch_my_greenhouse_jobs.py`
